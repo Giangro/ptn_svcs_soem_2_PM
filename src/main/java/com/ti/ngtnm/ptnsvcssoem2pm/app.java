@@ -9,7 +9,7 @@ package com.ti.ngtnm.ptnsvcssoem2pm;
  *
  * @author Alex
  */
-public class main {
+public class app {
     public static void main(String[] args) {
         // Prints "Hello, World" to the terminal window.
         System.out.println("Hello, World");
