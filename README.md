@@ -30,3 +30,6 @@ Let people know how they can dive into the project, include important links to t
 
 A short snippet describing the license (MIT, Apache, etc.)
 
+## Link
+
+https://dzone.com/articles/configuring-spring-in-standalone-application
