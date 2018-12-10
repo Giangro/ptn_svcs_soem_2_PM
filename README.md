@@ -33,3 +33,4 @@ A short snippet describing the license (MIT, Apache, etc.)
 ## Link
 
 https://dzone.com/articles/configuring-spring-in-standalone-application
+https://crunchify.com/how-to-create-build-java-project-including-all-dependencies-using-maven-maven-resources-maven-dependency-maven-jar-plugin-tutorial/
