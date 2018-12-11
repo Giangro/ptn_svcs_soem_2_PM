@@ -5,12 +5,13 @@
  */
 package com.ti.ngtnm.ptnsvcssoem2pm;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  *
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 @ComponentScan(basePackages = "com.ti")
 @Configuration
+@PropertySource("classpath:conf/ptn_svcs_soem_2_PM.properties")
 public class App {
 
   final static Logger logger
@@ -26,14 +28,20 @@ public class App {
   public static void main(String[] args) {
 
     logger.debug("Initializing spring framework");
-
     AnnotationConfigApplicationContext ctx
       = new AnnotationConfigApplicationContext(App.class);
-
     App app = ctx.getBean(App.class);
-
     logger.info("-- Starting PTN Conversion Tool --");
-    // Prints "Hello, World" to the terminal window.
-    System.out.println("Hello, World");
+    app.doStart();
+
   }
+
+  private void doStart() {
+    logger.info("version: "+this.version);
+    // do stuff
+  }
+
+  @Value("${version}")
+  private String version;
+
 }
