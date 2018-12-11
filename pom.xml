@@ -108,7 +108,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.ti.ngtnm.ptnsvcssoem2pm.app</mainClass>
+              <mainClass>com.ti.ngtnm.ptnsvcssoem2pm.App</mainClass>
             </manifest>
             <manifestEntries>
               <Class-Path>.</Class-Path>
