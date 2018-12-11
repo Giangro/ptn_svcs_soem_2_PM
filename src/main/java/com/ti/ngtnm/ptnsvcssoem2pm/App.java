@@ -28,12 +28,17 @@ public class App {
   public static void main(String[] args) {
 
     logger.debug("Initializing spring framework");
-    AnnotationConfigApplicationContext ctx
-      = new AnnotationConfigApplicationContext(App.class);
-    App app = ctx.getBean(App.class);
-    logger.info("-- Starting PTN Conversion Tool --");
-    app.doStart();
-
+    AnnotationConfigApplicationContext ctx = null;
+    try {
+      ctx = new AnnotationConfigApplicationContext(App.class);
+      App app = ctx.getBean(App.class);
+      logger.info("-- Starting PTN Conversion Tool --");
+      app.doStart();
+    } // try
+    finally {
+      if (ctx!=null)
+        ctx.close();
+    }
   }
 
   private void doStart() {
