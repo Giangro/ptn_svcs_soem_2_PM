@@ -35,3 +35,5 @@ A short snippet describing the license (MIT, Apache, etc.)
 https://dzone.com/articles/configuring-spring-in-standalone-application
 https://crunchify.com/how-to-create-build-java-project-including-all-dependencies-using-maven-maven-resources-maven-dependency-maven-jar-plugin-tutorial/
 http://starredmediasoft.com/maven-generate-package-external-resources/
+https://gitversion.readthedocs.io/en/latest/git-branching-strategies/gitflow-examples/
+https://it.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
