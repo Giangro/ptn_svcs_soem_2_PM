@@ -19,7 +19,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @ComponentScan(basePackages = "com.ti")
 @Configuration
-@PropertySource("classpath:conf/ptn_svcs_soem_2_PM.properties")
+@PropertySource("classpath:ptn_svcs_soem_2_PM.properties")
 public class App {
 
   final static Logger logger
