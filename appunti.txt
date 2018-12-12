@@ -7,4 +7,3 @@ git branch -D release/0.1.0
 git checkout master
 git merge develop
 git tag -a v0.1.0 -m "first release"
-
