@@ -3,3 +3,5 @@ git commit -a "add useful links to REAME.md"
 git checkout -b release/0.1.0
 git checkout develop
 git merge release/0.1.0
+git checkout master
+git merge develop
