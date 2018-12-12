@@ -38,8 +38,9 @@ public class App {
     finally {
       if (ctx!=null)
         ctx.close();
+        logger.info("exit");
     }
-    logger.info("exit");
+
   }
 
   private void doStart() {
