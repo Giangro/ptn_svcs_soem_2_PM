@@ -39,7 +39,7 @@ public class App {
       if (ctx!=null)
         ctx.close();
         logger.info("exit");
-    }
+    } // finally
 
   }
 
