@@ -17,15 +17,30 @@ class ConvertFiles {
   final static Logger logger
     = LoggerFactory.getLogger(ConvertFiles.class);
 
-    public ConvertFiles () {
-    }  // public method
+  final static String PROCESSING_EXT = ".processing";
+  final static String OK_EXT = ".ok";
+  final static String NOK_EXT = ".nok";
 
-    public void convert (File[] files) {
+  public ConvertFiles() {
+  }    // public method
 
-    }
+  public void convert(File[] files) {
+    try {
+      for (int i = 0; i < files.length; i++) {
+        if (files[i].isFile()) {
+          logger.info("Converting file '" + files[i].getName() + "'");
+          logger.debug("start phase 1");
+          String abspathfilename = files[i].getAbsolutePath();
+          File toconvert = new File (abspathfilename + ConvertFiles.PROCESSING_EXT);
+          logger.debug("renaming file to '"+abspathfilename + ConvertFiles.PROCESSING_EXT + "'");
+          files[i].renameTo(toconvert);
 
-    private void rename() {
-
-    }
+        }   // if
+      }   // for
+    }   // try
+    catch (Exception ex) {
+      logger.error(ex.toString());
+    }   // catch
+  }
 
 } // class

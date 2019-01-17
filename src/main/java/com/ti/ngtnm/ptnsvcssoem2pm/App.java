@@ -56,7 +56,7 @@ public class App {
         logger.debug("prepare for converting files");
         for (int i = 0; i < files.length; i++) {
           if (files[i].isFile()) {
-            logger.debug("File " + files[i].getName());
+            logger.debug("File '" + files[i].getName() + "'");
           } else if (files[i].isDirectory()) {
             logger.debug("Directory " + files[i].getName());
           }
