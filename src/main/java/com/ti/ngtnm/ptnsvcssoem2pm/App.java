@@ -49,17 +49,24 @@ public class App {
   private void doStart() {
     logger.info("Starting PTN Conversion Tool version "+this.version);
     logger.debug("listing files in directory '"+lsfFiles.getPath()+"'");
-    File[] files
-      = lsfFiles.list();
-    if (files!=null) {
-      for (int i = 0; i < files.length; i++) {
-        if (files[i].isFile()) {
-          logger.debug("File " + files[i].getName());
-        } else if (files[i].isDirectory()) {
-          logger.debug("Directory " + files[i].getName());
-        }
-      }
-    } // if
+    try {
+      File[] files
+        = lsfFiles.list();
+      if (files!=null) {
+        logger.debug("prepare for converting files");
+        for (int i = 0; i < files.length; i++) {
+          if (files[i].isFile()) {
+            logger.debug("File " + files[i].getName());
+          } else if (files[i].isDirectory()) {
+            logger.debug("Directory " + files[i].getName());
+          }
+        } // for
+        cvtFiles.convert(files);
+      } // if
+    } // try
+    catch (Exception ex) {
+      logger.error(ex.toString());
+    } // catch
   }
 
   @Value("${version}")
@@ -67,5 +74,8 @@ public class App {
 
   @Autowired
   private ListFiles lsfFiles;
+
+  @Autowired
+  private ConvertFiles cvtFiles;
 
 }
