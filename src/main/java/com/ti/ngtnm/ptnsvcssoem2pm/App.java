@@ -12,6 +12,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.io.File;
+
 
 /**
  *
@@ -32,23 +35,37 @@ public class App {
     try {
       ctx = new AnnotationConfigApplicationContext(App.class);
       App app = ctx.getBean(App.class);
-      logger.info("-- Starting PTN Conversion Tool --");
       app.doStart();
     } // try
     finally {
-      if (ctx!=null)
+      if (ctx!=null) {
         ctx.close();
         logger.info("exit");
+      } // if
     } // finally
 
   }
 
   private void doStart() {
-    logger.info("version: "+this.version);
-    // do stuff
+    logger.info("Starting PTN Conversion Tool version "+this.version);
+    logger.debug("listing files in directory '"+lsfFiles.getPath()+"'");
+    File[] files
+      = lsfFiles.list();
+    if (files!=null) {
+      for (int i = 0; i < files.length; i++) {
+        if (files[i].isFile()) {
+          logger.debug("File " + files[i].getName());
+        } else if (files[i].isDirectory()) {
+          logger.debug("Directory " + files[i].getName());
+        }
+      }
+    } // if
   }
 
   @Value("${version}")
   private String version;
+
+  @Autowired
+  private ListFiles lsfFiles;
 
 }
