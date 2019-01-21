@@ -39,3 +39,5 @@ https://gitversion.readthedocs.io/en/latest/git-branching-strategies/gitflow-exa
 https://it.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 https://gist.github.com/JamesMGreene/cdd0ac49f90c987e45ac
 https://git-scm.com/book/it/v1/Git-distribuito-Contribuire-a-un-Progetto
+// sax parser example
+https://www.journaldev.com/1198/java-sax-parser-example
