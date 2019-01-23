@@ -36,12 +36,12 @@ class EricssonConverter {
 
   public void convertFile() {
     if (this.xmlEricssonFile==null) {
-      logger.warn ("no file name provided");
+      logger.warn("no file name provided");
       return;
     } // if
 
     if (parser == null && this.createParser() == false) {
-      logger.error ("XML parser cannot be created. Exiting.");
+      logger.error("XML parser cannot be created. Exiting.");
       return;
     } // if
 
@@ -54,7 +54,6 @@ class EricssonConverter {
   }
 
   private Boolean createParser() {
-
     try {
       this.factory = SAXParserFactory.newInstance();
       this.parser = factory.newSAXParser();

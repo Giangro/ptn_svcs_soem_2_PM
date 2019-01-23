@@ -18,6 +18,4 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static Logger logger
     = LoggerFactory.getLogger(EricssonDefaultHandler.class);
 
-  
-
 } // class

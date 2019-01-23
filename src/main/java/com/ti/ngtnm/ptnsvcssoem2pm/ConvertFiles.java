@@ -39,7 +39,7 @@ class ConvertFiles {
       }   // for
     }   // try
     catch (Exception ex) {
-      logger.error(ex.toString());
+      logger.error(ex.getLocalizedMessage());
     }   // catch
   }
 
