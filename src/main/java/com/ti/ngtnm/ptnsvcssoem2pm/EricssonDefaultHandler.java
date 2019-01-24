@@ -71,6 +71,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   public void startElement(String uri, String localName, String qName, Attributes attributes)
   throws SAXException {
     logger.debug ("element: "+qName);
+    this.bStartElement = true;
   }
 
   @Override
@@ -80,7 +81,12 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   @Override
   public void characters(char ch[], int start, int length) throws SAXException {
-    logger.debug("val: " + new String(ch, start, length));
+    if (this.bStartElement == true) {
+      logger.debug("val: " + new String(ch, start, length));
+      this.bStartElement = false;
+    } // if
   }
+
+  private Boolean bStartElement = false;
 
 } // class EricssonDefaultHandler
