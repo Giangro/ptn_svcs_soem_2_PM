@@ -20,13 +20,16 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   // tag                                                                               CSV column
   //                                                                                   ===========
-  final static String XML_NEIDONEM                          = "NEIdOnEM";           // NeId
+  final static String XML_NE                                = "NE";
   final static String XML_NENAME                            = "NEName";             // NeAlias
   final static String XML_NETYPE                            = "NEType";             // NeType
   final static String XML_ENTITYIDENTITY                    = "EntityIdentity";     // EntityIdentity
   final static String XML_ENTITY_ID_ATTR                    = "Id";                 // MeasurePoint
   final static String XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR  = "localTimeFormatId";  // EndTime
   final static String XML_COMPLIANCE                        = "Compliance";         // Failure
+
+  // attributo
+  final static String XML_NEIDONEM_ATTR                     = "NEIdOnEM";           // NeId
 
   // valore attributo
   final static String XML_COUNTER_NUMOFSAMP_ATTR_VAL        = "NumOfSamp";          // NumOfSamp
@@ -70,23 +73,25 @@ class EricssonDefaultHandler extends DefaultHandler {
   @Override
   public void startElement(String uri, String localName, String qName, Attributes attributes)
   throws SAXException {
-    logger.debug ("element: "+qName);
-    this.bStartElement = true;
+    if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NE)) {
+      String neidonemstr = attributes.getValue(EricssonDefaultHandler.XML_NEIDONEM_ATTR);
+      logger.debug("NEIdOnEM(NeId): " + neidonemstr);
+      this.bNE = true;
+    } // if
   }
 
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
-
   }
 
   @Override
   public void characters(char ch[], int start, int length) throws SAXException {
-    if (this.bStartElement == true) {
-      logger.debug("val: " + new String(ch, start, length));
-      this.bStartElement = false;
+    if (this.bNE == true) {
+      this.bNE = false;
     } // if
   }
 
-  private Boolean bStartElement = false;
+  private Boolean bNE = false;
+
 
 } // class EricssonDefaultHandler
