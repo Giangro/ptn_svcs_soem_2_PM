@@ -10,6 +10,8 @@
   * and open the template in the editor.
   */
 
- class Source {
+package com.ti.ngtnm.ptnsvcssoem2pm;
 
- } // class Source
+class Source {
+
+} // class Source

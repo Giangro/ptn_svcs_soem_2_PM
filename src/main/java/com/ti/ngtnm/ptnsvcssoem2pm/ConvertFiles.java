@@ -22,6 +22,8 @@ class ConvertFiles {
   final static String NOK_EXT = ".nok";
 
   public ConvertFiles() {
+    this.ericssonConverter
+      = new EricssonConverter();
   }    // public method
 
   public void convert(File[] files) {
@@ -34,7 +36,8 @@ class ConvertFiles {
           File toconvert = new File (abspathfilename + ConvertFiles.PROCESSING_EXT);
           logger.debug("renaming file to '"+abspathfilename + ConvertFiles.PROCESSING_EXT + "'");
           files[i].renameTo(toconvert);
-
+          ericssonConverter.setXmlEricssonFile(toconvert);
+          ericssonConverter.convertFile();
         }   // if
       }   // for
     }   // try
@@ -42,5 +45,7 @@ class ConvertFiles {
       logger.error(ex.getLocalizedMessage());
     }   // catch
   }
+
+  private EricssonConverter ericssonConverter;
 
 } // class ConvertFiles

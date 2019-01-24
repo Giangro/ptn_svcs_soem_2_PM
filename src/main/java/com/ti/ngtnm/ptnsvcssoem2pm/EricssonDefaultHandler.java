@@ -18,7 +18,8 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static Logger logger
     = LoggerFactory.getLogger(EricssonDefaultHandler.class);
 
-  // tag
+  // tag                                                                               CSV column
+  //                                                                                   ===========
   final static String XML_NEIDONEM                          = "NEIdOnEM";           // NeId
   final static String XML_NENAME                            = "NEName";             // NeAlias
   final static String XML_NETYPE                            = "NEType";             // NeType
@@ -65,5 +66,21 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_COUNTER_MINRTDELAY_ATTR_VAL       = "minRTDelay";         // minRTDelay
   final static String XML_COUNTER_AVGRTDELAY_ATTR_VAL       = "avgRTDelay";         // avgRTDelay
   final static String XML_COUNTER_MAXRTDELAY_ATTR_VAL       = "maxRTDelay";         // maxRTDelay
+
+  @Override
+  public void startElement(String uri, String localName, String qName, Attributes attributes)
+  throws SAXException {
+    logger.debug ("element: "+qName);
+  }
+
+  @Override
+  public void endElement(String uri, String localName, String qName) throws SAXException {
+
+  }
+
+  @Override
+  public void characters(char ch[], int start, int length) throws SAXException {
+    logger.debug("val: " + new String(ch, start, length));
+  }
 
 } // class EricssonDefaultHandler

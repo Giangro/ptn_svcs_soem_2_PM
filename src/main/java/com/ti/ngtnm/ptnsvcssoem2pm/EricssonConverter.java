@@ -12,6 +12,8 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import java.io.File;
+import java.io.IOException;
 
 class EricssonConverter {
 
@@ -24,33 +26,46 @@ class EricssonConverter {
     this.parser = null;
   }    // public method
 
-  public EricssonConverter(String xmlericssonfile) {
+  public EricssonConverter(File xmlericssonfile) {
     this.xmlEricssonFile = xmlericssonfile;
     this.factory = null;
     this.parser = null;
   }    // public method
 
-  public void setXmlEricssonFile (String xmlericssonfile) {
+  public void setXmlEricssonFile (File xmlericssonfile) {
     this.xmlEricssonFile = xmlericssonfile;
   }
 
-  public void convertFile() {
+  public Boolean convertFile() {
     if (this.xmlEricssonFile==null) {
-      logger.warn("no file name provided");
-      return;
+      logger.warn("no file to parse was provided");
+      return false;
     } // if
 
     if (parser == null && this.createParser() == false) {
       logger.error("XML parser cannot be created. Exiting.");
-      return;
+      return false;
     } // if
 
-    // do stuff
+    try {
+      EricssonDefaultHandler handler
+        = new EricssonDefaultHandler();
+      parser.parse(this.xmlEricssonFile, handler);
+      return true;
+    } // try
+    catch (SAXException ex) {
+      logger.error("parse error: "+ex.getLocalizedMessage());
+      return false;
+    } // catch
+    catch (IOException ex) {
+      logger.error("IO Exception: "+ex.getLocalizedMessage());
+      return false;
+    } //
 
   }
 
-  public String getXmlEricssonFile () {
-      return this.xmlEricssonFile;
+  public File getXmlEricssonFile () {
+    return this.xmlEricssonFile;
   }
 
   private Boolean createParser() {
@@ -65,7 +80,7 @@ class EricssonConverter {
     } // catch
   }
 
-  private String xmlEricssonFile;
+  private File xmlEricssonFile;
   private SAXParserFactory factory;
   private SAXParser parser;
 
