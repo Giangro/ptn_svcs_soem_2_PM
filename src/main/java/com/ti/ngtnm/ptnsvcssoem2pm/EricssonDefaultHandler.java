@@ -67,7 +67,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_COUNTER_AVGRXPKTLR_ATTR_VAL       = "avgRxPktLR";         // avgRxPktLR
   final static String XML_COUNTER_MIN2WDELAY_ATTR_VAL       = "min2WDelay";         // min2WDelay
   final static String XML_COUNTER_AVG2WDELAY_ATTR_VAL       = "avg2WDelay";         // avg2WDelay
-  final static String XML_COUNTER_MAX2WDelay_ATTR_VAL       = "max2WDelay";         // max2WDelay
+  final static String XML_COUNTER_MAX2WDELAY_ATTR_VAL       = "max2WDelay";         // max2WDelay
   final static String XML_COUNTER_MINRTDELAY_ATTR_VAL       = "minRTDelay";         // minRTDelay
   final static String XML_COUNTER_AVGRTDELAY_ATTR_VAL       = "avgRTDelay";         // avgRTDelay
   final static String XML_COUNTER_MAXRTDELAY_ATTR_VAL       = "maxRTDelay";         // maxRTDelay
