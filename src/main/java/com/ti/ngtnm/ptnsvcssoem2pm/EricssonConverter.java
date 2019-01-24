@@ -69,4 +69,4 @@ class EricssonConverter {
   private SAXParserFactory factory;
   private SAXParser parser;
 
-} // class
+} // class EricssonConverter

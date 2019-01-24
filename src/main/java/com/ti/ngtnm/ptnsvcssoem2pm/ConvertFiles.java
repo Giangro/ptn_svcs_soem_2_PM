@@ -43,4 +43,4 @@ class ConvertFiles {
     }   // catch
   }
 
-} // class
+} // class ConvertFiles
