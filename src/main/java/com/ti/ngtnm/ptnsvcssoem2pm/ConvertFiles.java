@@ -35,9 +35,23 @@ class ConvertFiles {
           String abspathfilename = files[i].getAbsolutePath();
           File toconvert = new File (abspathfilename + ConvertFiles.PROCESSING_EXT);
           logger.debug("renaming file to '"+abspathfilename + ConvertFiles.PROCESSING_EXT + "'");
-          files[i].renameTo(toconvert);
-          ericssonConverter.setXmlEricssonFile(toconvert);
-          ericssonConverter.convertFile();
+          if (files[i].renameTo(toconvert) == true) {
+            ericssonConverter.setXmlEricssonFile(toconvert);
+            if (ericssonConverter.convertFile() == true) {
+              logger.info ("file '" + files[i].getName() + "' successfully converted");
+              File converted = new File (abspathfilename + ConvertFiles.OK_EXT);
+              toconvert.renameTo(converted);
+            } // if
+            else {
+              logger.error ("file '" + files[i].getName() + "' error in conversion");
+              File notconverted = new File (abspathfilename + ConvertFiles.NOK_EXT);
+              toconvert.renameTo(notconverted);
+            } //else
+          } // if
+          else {
+              logger.warn("** file '" + files[i].getName() + "' can't be renamed and was ignored");
+              logger.warn("** check for permissions and/or target file already exists");
+          } // else
         }   // if
       }   // for
     }   // try
