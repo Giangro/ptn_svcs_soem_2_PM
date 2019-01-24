@@ -21,7 +21,8 @@ class EricssonDefaultHandler extends DefaultHandler {
   // tag                                                                               CSV column
   //                                                                                   ===========
   final static String XML_NE                                = "NE";
-  final static String XML_NENAME                            = "NEName";             // NeAlias
+  final static String XML_NENAME                            = "NEName";             // NeAlias*
+  final static String XML_NESUFFIX                          = "NESuffix";           // NeAlias*
   final static String XML_NETYPE                            = "NEType";             // NeType
   final static String XML_ENTITYIDENTITY                    = "EntityIdentity";     // EntityIdentity
   final static String XML_ENTITY_ID_ATTR                    = "Id";                 // MeasurePoint
@@ -29,7 +30,8 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_COMPLIANCE                        = "Compliance";         // Failure
 
   // attributo
-  final static String XML_NEIDONEM_ATTR                     = "NEIdOnEM";           // NeId
+  final static String XML_NE_NEIDONEM_ATTR                  = "NEIdOnEM";           // NeId
+  final static String XML_NENAME_LONGNAME_ATTR              = "longName";           // NeAlias*
 
   // valore attributo
   final static String XML_COUNTER_NUMOFSAMP_ATTR_VAL        = "NumOfSamp";          // NumOfSamp
@@ -74,10 +76,18 @@ class EricssonDefaultHandler extends DefaultHandler {
   public void startElement(String uri, String localName, String qName, Attributes attributes)
   throws SAXException {
     if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NE)) {
-      String neidonemstr = attributes.getValue(EricssonDefaultHandler.XML_NEIDONEM_ATTR);
+      String neidonemstr = attributes.getValue(EricssonDefaultHandler.XML_NE_NEIDONEM_ATTR);
       logger.debug("NEIdOnEM(NeId): " + neidonemstr);
       this.bNE = true;
     } // if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NENAME)) {
+      String longname = attributes.getValue(EricssonDefaultHandler.XML_NENAME_LONGNAME_ATTR);
+      logger.debug("longName(NeAlias*): " + longname);
+      this.bNEName = true;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NESUFFIX)) {
+      this.bNESuffix = true;
+    } // else if
   }
 
   @Override
@@ -89,9 +99,18 @@ class EricssonDefaultHandler extends DefaultHandler {
     if (this.bNE == true) {
       this.bNE = false;
     } // if
+    else if (this.bNEName == true) {
+      this.bNEName = false;
+    } // else if
+    else if (this.bNESuffix == true) {
+      String nesuffix = new String(ch, start, length);
+      logger.debug("NESuffix(NeAlias*): " + nesuffix);
+      this.bNESuffix = false;
+    } // else if
   }
 
   private Boolean bNE = false;
-
+  private Boolean bNEName = false;
+  private Boolean bNESuffix = false;
 
 } // class EricssonDefaultHandler
