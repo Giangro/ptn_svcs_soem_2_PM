@@ -10,17 +10,26 @@ import java.util.HashMap;
 class Entity {
 
   public Entity () {
-    counters = new HashMap<String, String>();
   } // public method
+
+  // counterMap Getter
+  public HashMap<String,String> getCounterMap() {
+    return this.counterMap;
+  }
+
+  // counterMap Setter
+  public void setCounterMap(HashMap<String,String> countermap) {
+    this.counterMap = countermap;
+  }
 
   // counter Getter
   public String getCounter(String counterkey) {
-    return this.counters.get(counterkey);
+    return this.counterMap.get(counterkey);
   }
 
   // counter Setter
   public void setCounter(String counterkey, String countervalue) {
-    this.counters.put(counterkey,countervalue);
+    this.counterMap.put(counterkey,countervalue);
   }
 
   // measurePoint Getter
@@ -78,6 +87,6 @@ class Entity {
   private String timeStamp = null;
   private String sourceId = null;
   private String id = null;
-  private HashMap <String,String> counters = null;
+  private HashMap <String,String> counterMap = null;
 
 } // class Entity

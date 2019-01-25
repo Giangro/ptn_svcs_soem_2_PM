@@ -32,6 +32,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_NESUFFIX                          = "NESuffix";           // NeAlias*
   final static String XML_NETYPE                            = "NEType";             // NeType
   final static String XML_ENTITYIDENTITY                    = "EntityIdentity";     // EntityIdentity
+  final static String XML_DETAILS                           = "Details";
   final static String XML_COMPLIANCE                        = "Compliance";         // Failure
   final static String XML_TIMESTAMP                         = "TimeStamp";
 
@@ -120,6 +121,12 @@ class EricssonDefaultHandler extends DefaultHandler {
       logger.debug("entity.sourceid: " + this.entity.getSourceId());
       this.bEntity = true;
     } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
+      HashMap <String,String> countermap
+        = new HashMap <String,String>();
+      this.entity.setCounterMap(countermap);
+      this.bDetails = true;
+    } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
       String id = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_ID_ATTR);
       if (this.sourceMap == null) {
@@ -158,6 +165,9 @@ class EricssonDefaultHandler extends DefaultHandler {
         logger.error("error while parsing timestamp '"+timestampfrom+"': "+ex.getLocalizedMessage());
       } // catch
       this.bTimeStamp = true;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COMPLIANCE)) {
+      this.bCompliance = true;
     } // else if
   }
 
@@ -200,6 +210,9 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (this.bEntity == true) {
       this.bEntity = false;
     } // else if
+    else if (this.bDetails == true) {
+      this.bDetails = false;
+    } // else if
     else if (this.bSource == true) {
       this.bSource = false;
     } // else if
@@ -209,6 +222,12 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (this.bTimeStamp == true) {
       this.bTimeStamp = false;
     } // else if
+    else if (this.bCompliance == true) {
+      String failure = new String(ch, start, length);
+      this.entity.setFailure(failure);
+      logger.debug("Compliance(Failure): " + this.entity.getFailure());
+      this.bCompliance = false;
+    } // else if
   }
 
   private Boolean bNE = false;
@@ -216,9 +235,11 @@ class EricssonDefaultHandler extends DefaultHandler {
   private Boolean bNESuffix = false;
   private Boolean bNEType = false;
   private Boolean bEntity = false;
+  private Boolean bDetails = false;
   private Boolean bSource = false;
   private Boolean bSchemeMOAM = false;
   private Boolean bTimeStamp = false;
+  private Boolean bCompliance = false;
 
   // NE
   private NE ne = null;
