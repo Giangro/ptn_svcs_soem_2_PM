@@ -35,6 +35,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_DETAILS                           = "Details";
   final static String XML_COMPLIANCE                        = "Compliance";         // Failure
   final static String XML_TIMESTAMP                         = "TimeStamp";
+  final static String XML_COUNTER                           = "Counter";
 
   // attributo
   final static String XML_SOURCE_ID_ATTR                    = "Id";
@@ -47,6 +48,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_NE_NEIDONEM_ATTR                  = "NEIdOnEM";           // NeId
   final static String XML_NENAME_LONGNAME_ATTR              = "longName";           // NeAlias*
   final static String XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR  = "localTimeFormatId";  // EndTime
+  final static String XML_COUNTER_NAME_ATTR                 = "name";
 
   // valore attributo
   final static String XML_COUNTER_NUMOFSAMP_ATTR_VAL        = "NumOfSamp";          // NumOfSamp
@@ -88,6 +90,46 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_COUNTER_MAXRTDELAY_ATTR_VAL       = "maxRTDelay";         // maxRTDelay
 
   final static String XML_ENTITY_COMPLIANCE_SUCCESS         = "Success";
+
+  final String counterList[] = {
+    EricssonDefaultHandler.XML_COUNTER_NUMOFSAMP_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_DROPEVENTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTLOCTETS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTPACKETS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_BROADCPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MULTICPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_CRCALGNERR_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UNDSIZPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OVRSIZPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_FRAGMENTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_JABBERS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_COLLISIONS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UTILIZATIO_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_USF_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OSF_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_FRAG_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_FFAE_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UFTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MFTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_BFTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UFROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MFROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_BFROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTTXPKTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTRXPKTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTTXPKTLO_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTRXPKTLO_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVGTXPKTLR_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVGRXPKTLR_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MIN2WDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVG2WDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MAX2WDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MINRTDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVGRTDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MAXRTDELAY_ATTR_VAL
+  };
 
   @Override
   public void startElement(String uri, String localName, String qName, Attributes attributes)
@@ -169,6 +211,11 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COMPLIANCE)) {
       this.bCompliance = true;
     } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COUNTER)) {
+      this.counterName
+        = attributes.getValue(EricssonDefaultHandler.XML_COUNTER_NAME_ATTR);
+      this.bCounter = true;
+    } // else if
   }
 
   @Override
@@ -184,6 +231,10 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.sourceMap.put(this.source.getId(), this.source);
       logger.debug("source = '"+this.sourceMap.get(this.source.getId()).toString()+"'");
       this.source = null;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COUNTER)) {
+      logger.debug(this.counterName+":" + this.entity.getCounter(this.counterName));
+      this.counterName = null;
     } // else if
   }
 
@@ -228,6 +279,11 @@ class EricssonDefaultHandler extends DefaultHandler {
       logger.debug("Compliance(Failure): " + this.entity.getFailure());
       this.bCompliance = false;
     } // else if
+    else if (this.bCounter == true) {
+      String counterval = new String(ch, start, length);
+      this.entity.setCounter(this.counterName, counterval);
+      this.bCounter = false;
+    } // else if
   }
 
   private Boolean bNE = false;
@@ -240,6 +296,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   private Boolean bSchemeMOAM = false;
   private Boolean bTimeStamp = false;
   private Boolean bCompliance = false;
+  private Boolean bCounter = false;
 
   // NE
   private NE ne = null;
@@ -252,5 +309,8 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   // List of Source
   private HashMap<String, Source> sourceMap = null;
+
+  // counter name
+  private String counterName = null;
 
 } // class EricssonDefaultHandler
