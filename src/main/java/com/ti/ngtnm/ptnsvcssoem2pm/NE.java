@@ -51,9 +51,20 @@ class NE {
     this.neAlias = nealias;
   }
 
+  // neType Getter
+  public String getNEType() {
+    return this.neType;
+  }
+
+  // neAlias Setter
+  public void setNEType (String netype) {
+    this.neType = netype;
+  }
+
   private String neIdOnEM;
   private String neName;
   private String neSuffix;
   private String neAlias;
+  private String neType;
 
 } // class NE

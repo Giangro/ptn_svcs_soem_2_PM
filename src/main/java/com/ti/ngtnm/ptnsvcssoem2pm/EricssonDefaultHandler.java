@@ -77,21 +77,33 @@ class EricssonDefaultHandler extends DefaultHandler {
   throws SAXException {
     if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NE)) {
       String neidonemstr = attributes.getValue(EricssonDefaultHandler.XML_NE_NEIDONEM_ATTR);
-      logger.debug("NEIdOnEM(NeId): " + neidonemstr);
+      this.ne = new NE();
+      this.ne.setNEIdOnEM(neidonemstr);
+      logger.debug("NEIdOnEM(NeId): " + this.ne.getNEIdOnEM());
       this.bNE = true;
     } // if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NENAME)) {
       String longname = attributes.getValue(EricssonDefaultHandler.XML_NENAME_LONGNAME_ATTR);
-      logger.debug("longName(NeAlias*): " + longname);
+      this.ne.setNEName(longname);
+      logger.debug("longName(part of NeAlias*): " + this.ne.getNEName());
       this.bNEName = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NESUFFIX)) {
       this.bNESuffix = true;
     } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NETYPE)) {
+      this.bNEType = true;
+    } // else if
   }
 
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
+    if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NE)) {
+      this.ne.setNEAlias(
+        this.ne.getNEName()+"."+this.ne.getNESuffix()
+      );
+      logger.debug("NEAlias: " + this.ne.getNEAlias());
+    } // if
   }
 
   @Override
@@ -104,13 +116,24 @@ class EricssonDefaultHandler extends DefaultHandler {
     } // else if
     else if (this.bNESuffix == true) {
       String nesuffix = new String(ch, start, length);
-      logger.debug("NESuffix(NeAlias*): " + nesuffix);
+      this.ne.setNESuffix(nesuffix);
+      logger.debug("NESuffix(part of NeAlias*): " + this.ne.getNESuffix());
       this.bNESuffix = false;
+    } // else if
+    else if (this.bNEType == true) {
+      String netype = new String(ch, start, length);
+      this.ne.setNEType(netype);
+      logger.debug("NEType(NeType): " + this.ne.getNEType());
+      this.bNEType = false;
     } // else if
   }
 
   private Boolean bNE = false;
   private Boolean bNEName = false;
   private Boolean bNESuffix = false;
+  private Boolean bNEType = false;
+
+  // NE
+  private NE ne = null;
 
 } // class EricssonDefaultHandler
