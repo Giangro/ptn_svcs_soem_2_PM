@@ -61,10 +61,10 @@ class NE {
     this.neType = netype;
   }
 
-  private String neIdOnEM;
-  private String neName;
-  private String neSuffix;
-  private String neAlias;
-  private String neType;
+  private String neIdOnEM = null;
+  private String neName = null;
+  private String neSuffix = null;
+  private String neAlias = null;
+  private String neType = null;
 
 } // class NE

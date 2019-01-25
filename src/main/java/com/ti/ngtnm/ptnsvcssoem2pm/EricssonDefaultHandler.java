@@ -12,6 +12,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import java.util.HashMap;
 
 class EricssonDefaultHandler extends DefaultHandler {
 
@@ -21,16 +22,23 @@ class EricssonDefaultHandler extends DefaultHandler {
   // tag                                                                               CSV column
   //                                                                                   ===========
   final static String XML_NE                                = "NE";
+  final static String XML_SOURCE                            = "Source";
+  final static String XML_SCHEMEMOAM                        = "SchemeMOAM";
   final static String XML_ENTITY                            = "Entity";
   final static String XML_NENAME                            = "NEName";             // NeAlias*
   final static String XML_NESUFFIX                          = "NESuffix";           // NeAlias*
   final static String XML_NETYPE                            = "NEType";             // NeType
   final static String XML_ENTITYIDENTITY                    = "EntityIdentity";     // EntityIdentity
-  final static String XML_ENTITY_ID_ATTR                    = "Id";                 // MeasurePoint
   final static String XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR  = "localTimeFormatId";  // EndTime
   final static String XML_COMPLIANCE                        = "Compliance";         // Failure
 
   // attributo
+  final static String XML_SOURCE_ID_ATTR                    = "Id";
+  final static String XML_SOURCE_TUNNEL_ATTR                = "Tunnel";
+  final static String XML_SOURCE_LSPINSTANCE_ATTR           = "lspInstance";
+  final static String XML_SOURCE_COSBUNDLE_ATTR             = "cosBundle";
+  final static String XML_SOURCE_ISLSP_ATTR                 = "isLsp";
+  final static String XML_ENTITY_ID_ATTR                    = "Id";
   final static String XML_NE_NEIDONEM_ATTR                  = "NEIdOnEM";           // NeId
   final static String XML_NENAME_LONGNAME_ATTR              = "longName";           // NeAlias*
 
@@ -98,6 +106,24 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY)) {
       this.bEntity = true;
     } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
+      String id = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_ID_ATTR);
+      if (this.sourceMap == null) {
+        this.sourceMap = new HashMap<String, Source>();
+      } // if
+      source = new Source();
+      source.setId(id);
+      this.sourceMap.put(id,source);
+      this.bSource = true;
+      logger.debug("create new source with id: '"+this.sourceMap.get(id).getId()+"'");
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SCHEMEMOAM)) {      
+      String tunnel = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_TUNNEL_ATTR);
+      String lspinstance = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_LSPINSTANCE_ATTR);
+      String islsp = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_ISLSP_ATTR);
+      String cosbundle = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_COSBUNDLE_ATTR);
+      this.bSchemeMOAM = true;
+    } // else if
   }
 
   @Override
@@ -107,7 +133,12 @@ class EricssonDefaultHandler extends DefaultHandler {
         this.ne.getNEName()+"."+this.ne.getNESuffix()
       );
       logger.debug("NEAlias: " + this.ne.getNEAlias());
+      this.ne = null;
     } // if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
+      this.source = null;
+    } // else if
+
   }
 
   @Override
@@ -133,6 +164,12 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (this.bEntity == true) {
       this.bEntity = false;
     } // else if
+    else if (this.bSource == true) {
+      this.bSource = false;
+    } // else if
+    else if (this.bSchemeMOAM == true) {
+      this.bSchemeMOAM = false;
+    } // else if
   }
 
   private Boolean bNE = false;
@@ -140,8 +177,16 @@ class EricssonDefaultHandler extends DefaultHandler {
   private Boolean bNESuffix = false;
   private Boolean bNEType = false;
   private Boolean bEntity = false;
+  private Boolean bSource = false;
+  private Boolean bSchemeMOAM = false;
 
   // NE
   private NE ne = null;
+
+  // Source
+  private Source source;
+
+  // List of Source
+  private HashMap<String, Source> sourceMap = null;
 
 } // class EricssonDefaultHandler

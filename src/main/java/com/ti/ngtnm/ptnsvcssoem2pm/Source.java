@@ -5,7 +5,6 @@
  */
 
 package com.ti.ngtnm.ptnsvcssoem2pm;
-import java.util.HashMap;
 
 class Source {
 
@@ -62,10 +61,10 @@ class Source {
     this.isLsp = islsp;
   }
 
-  private String id;
-  private String tunnel;
-  private String lspInstance;
-  private String cosBundle;
-  private String isLsp;
+  private String id = null;
+  private String tunnel = null;
+  private String lspInstance = null;
+  private String cosBundle = null;
+  private String isLsp = null;
 
 } // class Source
