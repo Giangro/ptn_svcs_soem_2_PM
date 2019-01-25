@@ -111,8 +111,11 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.bNEType = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY)) {
+      String id = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_ID_ATTR);
       String sourceid = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_SOURCEID_ATTR);
       this.entity = new Entity();
+      this.entity.setId(id);
+      logger.debug("entity.id: " + this.entity.getId());
       this.entity.setSourceId(sourceid);
       logger.debug("entity.sourceid: " + this.entity.getSourceId());
       this.bEntity = true;

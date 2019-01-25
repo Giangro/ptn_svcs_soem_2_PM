@@ -29,7 +29,7 @@ public class App {
     = LoggerFactory.getLogger(App.class);
 
   public static void main(String[] args) {
-
+    logger.info("=================================================");
     logger.debug("Initializing spring framework");
     AnnotationConfigApplicationContext ctx = null;
     try {

@@ -63,10 +63,21 @@ class Entity {
     this.sourceId = sourceid;
   }
 
+  // id Getter
+  public String getId() {
+    return this.id;
+  }
+
+  // sourceId Setter
+  public void setId(String id) {
+    this.id = id;
+  }
+
   private String measurePoint = null;
   private String failure = null;
   private String timeStamp = null;
   private String sourceId = null;
+  private String id = null;
   private HashMap <String,String> counters = null;
 
 } // class Entity
