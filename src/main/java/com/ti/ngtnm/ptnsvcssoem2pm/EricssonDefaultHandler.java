@@ -21,6 +21,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   // tag                                                                               CSV column
   //                                                                                   ===========
   final static String XML_NE                                = "NE";
+  final static String XML_ENTITY                            = "Entity";
   final static String XML_NENAME                            = "NEName";             // NeAlias*
   final static String XML_NESUFFIX                          = "NESuffix";           // NeAlias*
   final static String XML_NETYPE                            = "NEType";             // NeType
@@ -94,6 +95,9 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NETYPE)) {
       this.bNEType = true;
     } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY)) {
+      this.bEntity = true;
+    } // else if
   }
 
   @Override
@@ -126,12 +130,16 @@ class EricssonDefaultHandler extends DefaultHandler {
       logger.debug("NEType(NeType): " + this.ne.getNEType());
       this.bNEType = false;
     } // else if
+    else if (this.bEntity == true) {
+      this.bEntity = false;
+    } // else if
   }
 
   private Boolean bNE = false;
   private Boolean bNEName = false;
   private Boolean bNESuffix = false;
   private Boolean bNEType = false;
+  private Boolean bEntity = false;
 
   // NE
   private NE ne = null;
