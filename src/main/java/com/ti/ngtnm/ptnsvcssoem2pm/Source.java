@@ -61,6 +61,11 @@ class Source {
     this.isLsp = islsp;
   }
 
+  @Override
+  public String toString() {
+    return "Source{" + "id=" + id + ", tunnel=" + tunnel + ", lspInstance=" + lspInstance + ", cosBundle=" + cosBundle + ", isLsp=" + isLsp + '}';
+  }
+
   private String id = null;
   private String tunnel = null;
   private String lspInstance = null;

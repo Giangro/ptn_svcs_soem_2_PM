@@ -34,7 +34,7 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   // attributo
   final static String XML_SOURCE_ID_ATTR                    = "Id";
-  final static String XML_SOURCE_TUNNEL_ATTR                = "Tunnel";
+  final static String XML_SOURCE_TUNNEL_ATTR                = "tunnel";
   final static String XML_SOURCE_LSPINSTANCE_ATTR           = "lspInstance";
   final static String XML_SOURCE_COSBUNDLE_ATTR             = "cosBundle";
   final static String XML_SOURCE_ISLSP_ATTR                 = "isLsp";
@@ -117,11 +117,15 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.bSource = true;
       logger.debug("create new source with id: '"+this.sourceMap.get(id).getId()+"'");
     } // else if
-    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SCHEMEMOAM)) {      
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SCHEMEMOAM)) {
       String tunnel = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_TUNNEL_ATTR);
+      this.source.setTunnel(tunnel);
       String lspinstance = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_LSPINSTANCE_ATTR);
+      this.source.setLspInstance(lspinstance);
       String islsp = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_ISLSP_ATTR);
+      this.source.setIsLsp(islsp);
       String cosbundle = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_COSBUNDLE_ATTR);
+      this.source.setCosBundle(cosbundle);
       this.bSchemeMOAM = true;
     } // else if
   }
@@ -136,6 +140,8 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.ne = null;
     } // if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
+      this.sourceMap.put(this.source.getId(), this.source);
+      logger.debug("source = '"+this.sourceMap.get(this.source.getId()).toString()+"'");
       this.source = null;
     } // else if
 
