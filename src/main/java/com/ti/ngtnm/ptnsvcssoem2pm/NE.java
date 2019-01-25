@@ -11,14 +11,49 @@ class NE {
   public NE () {
   } // public method
 
+  // neIdOnEM Getter
   public String getNEIdOnEM() {
     return this.neIdOnEM;
   }
 
+  // neIdOnEM Setter
   public void setNEIdOnEM (String neidonem) {
     this.neIdOnEM = neidonem;
   }
 
+  // neName Getter
+  public String getNEName() {
+    return this.neName;
+  }
+
+  // neName Setter
+  public void setNEName (String nename) {
+    this.neName = nename;
+  }
+
+  // neSuffix Getter
+  public String getNESuffix() {
+    return this.neSuffix;
+  }
+
+  // neSuffix Setter
+  public void setNESuffix (String nesuffix) {
+    this.neSuffix = nesuffix;
+  }
+
+  // neAlias Getter
+  public String getNEAlias() {
+    return this.neAlias;
+  }
+
+  // neAlias Setter
+  public void setNEAlias (String nealias) {
+    this.neAlias = nealias;
+  }
+
   private String neIdOnEM;
+  private String neName;
+  private String neSuffix;
+  private String neAlias;
 
 } // class NE
