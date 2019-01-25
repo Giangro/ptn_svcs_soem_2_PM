@@ -201,7 +201,7 @@ class EricssonDefaultHandler extends DefaultHandler {
         Date date = formatfrom.parse(timestampfrom);
         String timestampto = formatto.format(date);
         this.entity.setTimeStamp(timestampto);
-        //logger.debug("EndTime("+timestampfrom+"): " + this.entity.getTimeStamp());
+        logger.debug("EndTime("+timestampfrom+"): " + this.entity.getTimeStamp());
       } // try
       catch (Exception ex) {
         logger.error("error while parsing timestamp '"+timestampfrom+"': "+ex.getLocalizedMessage());
