@@ -13,14 +13,17 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Date;
 
 class EricssonDefaultHandler extends DefaultHandler {
 
   final static Logger logger
     = LoggerFactory.getLogger(EricssonDefaultHandler.class);
 
-  // tag                                                                               CSV column
-  //                                                                                   ===========
+  // tag                                                                            CSV column
+  //                                                                                ===========
   final static String XML_NE                                = "NE";
   final static String XML_SOURCE                            = "Source";
   final static String XML_SCHEMEMOAM                        = "SchemeMOAM";
@@ -29,8 +32,8 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_NESUFFIX                          = "NESuffix";           // NeAlias*
   final static String XML_NETYPE                            = "NEType";             // NeType
   final static String XML_ENTITYIDENTITY                    = "EntityIdentity";     // EntityIdentity
-  final static String XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR  = "localTimeFormatId";  // EndTime
   final static String XML_COMPLIANCE                        = "Compliance";         // Failure
+  final static String XML_TIMESTAMP                         = "TimeStamp";
 
   // attributo
   final static String XML_SOURCE_ID_ATTR                    = "Id";
@@ -39,8 +42,10 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_SOURCE_COSBUNDLE_ATTR             = "cosBundle";
   final static String XML_SOURCE_ISLSP_ATTR                 = "isLsp";
   final static String XML_ENTITY_ID_ATTR                    = "Id";
+  final static String XML_ENTITY_SOURCEID_ATTR              = "sourceId";
   final static String XML_NE_NEIDONEM_ATTR                  = "NEIdOnEM";           // NeId
   final static String XML_NENAME_LONGNAME_ATTR              = "longName";           // NeAlias*
+  final static String XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR  = "localTimeFormatId";  // EndTime
 
   // valore attributo
   final static String XML_COUNTER_NUMOFSAMP_ATTR_VAL        = "NumOfSamp";          // NumOfSamp
@@ -81,6 +86,8 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_COUNTER_AVGRTDELAY_ATTR_VAL       = "avgRTDelay";         // avgRTDelay
   final static String XML_COUNTER_MAXRTDELAY_ATTR_VAL       = "maxRTDelay";         // maxRTDelay
 
+  final static String XML_ENTITY_COMPLIANCE_SUCCESS         = "Success";
+
   @Override
   public void startElement(String uri, String localName, String qName, Attributes attributes)
   throws SAXException {
@@ -104,6 +111,10 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.bNEType = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY)) {
+      String sourceid = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_SOURCEID_ATTR);
+      this.entity = new Entity();
+      this.entity.setSourceId(sourceid);
+      logger.debug("entity.sourceid: " + this.entity.getSourceId());
       this.bEntity = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
@@ -128,6 +139,23 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.source.setCosBundle(cosbundle);
       this.bSchemeMOAM = true;
     } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_TIMESTAMP)) {
+      String timestampfrom
+        = attributes.getValue(EricssonDefaultHandler.XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR);
+      try {
+        // from 2018-12-14 14.00.00 to 14/12/2018 14:00
+        DateFormat formatfrom = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
+        DateFormat formatto = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = formatfrom.parse(timestampfrom);
+        String timestampto = formatto.format(date);
+        this.entity.setTimeStamp(timestampto);
+        //logger.debug("EndTime("+timestampfrom+"): " + this.entity.getTimeStamp());
+      } // try
+      catch (Exception ex) {
+        logger.error("error while parsing timestamp '"+timestampfrom+"': "+ex.getLocalizedMessage());
+      } // catch
+      this.bTimeStamp = true;
+    } // else if
   }
 
   @Override
@@ -144,7 +172,6 @@ class EricssonDefaultHandler extends DefaultHandler {
       logger.debug("source = '"+this.sourceMap.get(this.source.getId()).toString()+"'");
       this.source = null;
     } // else if
-
   }
 
   @Override
@@ -176,6 +203,9 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (this.bSchemeMOAM == true) {
       this.bSchemeMOAM = false;
     } // else if
+    else if (this.bTimeStamp == true) {
+      this.bTimeStamp = false;
+    } // else if
   }
 
   private Boolean bNE = false;
@@ -185,12 +215,16 @@ class EricssonDefaultHandler extends DefaultHandler {
   private Boolean bEntity = false;
   private Boolean bSource = false;
   private Boolean bSchemeMOAM = false;
+  private Boolean bTimeStamp = false;
 
   // NE
   private NE ne = null;
 
   // Source
-  private Source source;
+  private Source source = null;
+
+  // Entity
+  private Entity entity = null;
 
   // List of Source
   private HashMap<String, Source> sourceMap = null;

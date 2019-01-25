@@ -23,6 +23,16 @@ class Entity {
     this.counters.put(counterkey,countervalue);
   }
 
+  // measurePoint Getter
+  public String getMeasurePoint() {
+    return this.measurePoint;
+  }
+
+  // measurePoint Setter
+  public void setMeasurePoint(String measurepoint) {
+    this.measurePoint = measurepoint;
+  }
+
   // failure Getter
   public String getFailure() {
     return this.failure;
@@ -33,7 +43,30 @@ class Entity {
     this.failure = failure;
   }
 
+  // timestamp Getter
+  public String getTimeStamp() {
+    return this.timeStamp;
+  }
+
+  // timestamp Setter
+  public void setTimeStamp(String timestamp) {
+    this.timeStamp = timestamp;
+  }
+
+  // sourceId Getter
+  public String getSourceId() {
+    return this.sourceId;
+  }
+
+  // sourceId Setter
+  public void setSourceId(String sourceid) {
+    this.sourceId = sourceid;
+  }
+
+  private String measurePoint = null;
+  private String failure = null;
+  private String timeStamp = null;
+  private String sourceId = null;
   private HashMap <String,String> counters = null;
-  private String failure;
 
 } // class Entity

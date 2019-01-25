@@ -36,7 +36,7 @@ class ConvertFiles {
           File toconvert = new File (abspathfilename + ConvertFiles.PROCESSING_EXT);
           logger.debug("renaming file to '"+abspathfilename + ConvertFiles.PROCESSING_EXT + "'");
           if (files[i].renameTo(toconvert) == true) {
-            ericssonConverter.setXmlEricssonFile(toconvert);
+            ericssonConverter.setXmlEricssonFile(toconvert);            
             if (ericssonConverter.convertFile() == true) {
               logger.info ("file '" + files[i].getName() + "' successfully converted");
               File converted = new File (abspathfilename + ConvertFiles.OK_EXT);
