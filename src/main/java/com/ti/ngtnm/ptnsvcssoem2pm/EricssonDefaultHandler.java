@@ -16,11 +16,15 @@ import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 class EricssonDefaultHandler extends DefaultHandler {
 
   final static Logger logger
     = LoggerFactory.getLogger(EricssonDefaultHandler.class);
+
+  static final String EMPTY_STRING = "";
+  static final String SOURCE_ID_TOKEN_SEP = "-";
 
   // tag                                                                            CSV column
   //                                                                                ===========
@@ -42,6 +46,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_SOURCE_TUNNEL_ATTR                = "tunnel";
   final static String XML_SOURCE_LSPINSTANCE_ATTR           = "lspInstance";
   final static String XML_SOURCE_COSBUNDLE_ATTR             = "cosBundle";
+  final static String XML_SOURCE_COSBUNDLETX_ATTR           = "cosBundleTx";
   final static String XML_SOURCE_ISLSP_ATTR                 = "isLsp";
   final static String XML_ENTITY_ID_ATTR                    = "Id";
   final static String XML_ENTITY_SOURCEID_ATTR              = "sourceId";
@@ -161,6 +166,9 @@ class EricssonDefaultHandler extends DefaultHandler {
       logger.debug("entity.id: " + this.entity.getId());
       this.entity.setSourceId(sourceid);
       logger.debug("entity.sourceid: " + this.entity.getSourceId());
+      String measurepoint = extractMeasurePoint(this.entity.getSourceId());
+      this.entity.setMeasurePoint(measurepoint);
+      logger.debug("entity.measurepoint: " + this.entity.getMeasurePoint());
       this.bEntity = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
@@ -189,6 +197,8 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.source.setIsLsp(islsp);
       String cosbundle = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_COSBUNDLE_ATTR);
       this.source.setCosBundle(cosbundle);
+      String cosbundletx = attributes.getValue(EricssonDefaultHandler.XML_SOURCE_COSBUNDLETX_ATTR);
+      this.source.setCosBundleTx(cosbundletx);
       this.bSchemeMOAM = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_TIMESTAMP)) {
@@ -223,7 +233,7 @@ class EricssonDefaultHandler extends DefaultHandler {
     if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NE)) {
       this.ne.setNEAlias(
         this.ne.getNEName()+"."+this.ne.getNESuffix()
-      );
+        );
       logger.debug("NEAlias: " + this.ne.getNEAlias());
       this.ne = null;
     } // if
@@ -284,6 +294,55 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.entity.setCounter(this.counterName, counterval);
       this.bCounter = false;
     } // else if
+  }
+
+  private String extractMeasurePoint(String sourceid) {
+    String measurepoint = EricssonDefaultHandler.EMPTY_STRING;
+    Source source = this.sourceMap.get(sourceid);
+    if (source == null) {
+      return measurepoint;
+    } // if
+    else {
+      String islsp = source.getIsLsp();
+      if (islsp == null) {
+        measurepoint
+          = extractMeasurePointFromSourceId(sourceid,5,8);
+      } // if
+      else {
+        measurepoint
+          = extractMeasurePointFromSourceId(sourceid,7,10);
+          measurepoint = measurepoint
+            + " "
+            + source.getTunnel()
+            + "." + source.getLspInstance()
+            + "." + source.getCosBundleTx()
+            + "." + source.getIsLsp()
+            ;
+      } // else
+    } // else
+    return measurepoint;
+  }
+
+  private String extractMeasurePointFromSourceId(String sourceid, int first, int last) {
+    StringTokenizer tokenizer
+      = new StringTokenizer(sourceid, EricssonDefaultHandler.SOURCE_ID_TOKEN_SEP);
+    String token;
+    String measurepoint = EricssonDefaultHandler.EMPTY_STRING;
+    for (int ct=0; tokenizer.hasMoreElements(); ct++) {
+      token = tokenizer.nextToken();
+      if (ct<first) {
+        continue;
+      } // if
+      else if (ct<last) {
+        if (measurepoint.equals(EricssonDefaultHandler.EMPTY_STRING)) {
+          measurepoint = token;
+        } // if
+        else {
+          measurepoint = measurepoint + '/' + token;
+        } // else
+      } // else
+    } // for
+    return measurepoint;
   }
 
   private Boolean bNE = false;

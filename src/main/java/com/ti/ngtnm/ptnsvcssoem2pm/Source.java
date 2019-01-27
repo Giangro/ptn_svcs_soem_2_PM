@@ -46,6 +46,16 @@ class Source {
     return this.cosBundle;
   }
 
+  // cosBundleTx Setter
+  public void setCosBundleTx (String cosbundletx) {
+    this.cosBundleTx = cosbundletx;
+  }
+
+  // cosBundletx Getter
+  public String getCosBundleTx() {
+    return this.cosBundleTx;
+  }
+
   // cosBundle Setter
   public void setCosBundle (String cosbundle) {
     this.cosBundle = cosbundle;
@@ -63,13 +73,14 @@ class Source {
 
   @Override
   public String toString() {
-    return "Source{" + "id=" + id + ", tunnel=" + tunnel + ", lspInstance=" + lspInstance + ", cosBundle=" + cosBundle + ", isLsp=" + isLsp + '}';
+    return "Source{" + "id=" + id + ", tunnel=" + tunnel + ", lspInstance=" + lspInstance + ", cosBundle=" + cosBundle + ", cosBundleTx=" + cosBundleTx + ", isLsp=" + isLsp + '}';
   }
 
   private String id = null;
   private String tunnel = null;
   private String lspInstance = null;
   private String cosBundle = null;
+  private String cosBundleTx = null;
   private String isLsp = null;
 
 } // class Source
