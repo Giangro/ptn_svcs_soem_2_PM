@@ -14,6 +14,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import java.io.File;
 import java.io.IOException;
+import org.apache.commons.io.FilenameUtils;
+
 
 class EricssonConverter {
 
@@ -24,16 +26,30 @@ class EricssonConverter {
     this.xmlEricssonFile = null;
     this.factory = null;
     this.parser = null;
+    this.csvPath = null;
   }    // public method
 
-  public EricssonConverter(File xmlericssonfile) {
+  public EricssonConverter(File xmlericssonfile, String csvpath) {
     this.xmlEricssonFile = xmlericssonfile;
     this.factory = null;
     this.parser = null;
+    this.csvPath = csvpath;
   }    // public method
 
   public void setXmlEricssonFile (File xmlericssonfile) {
     this.xmlEricssonFile = xmlericssonfile;
+  }
+
+  public File getXmlEricssonFile () {
+    return this.xmlEricssonFile;
+  }
+
+  public void setCsvPath (String csvpath) {
+    this.csvPath = csvpath;
+  }
+
+  public String getCsvPath () {
+    return this.csvPath;
   }
 
   public Boolean convertFile() {
@@ -50,6 +66,19 @@ class EricssonConverter {
     try {
       EricssonDefaultHandler handler
         = new EricssonDefaultHandler();
+
+      String xmlfilename =
+        FilenameUtils.removeExtension(this.xmlEricssonFile.getName());
+
+      logger.debug("xml filename: '"+xmlfilename+"'");
+
+      String csvfilename
+        = this.csvPath
+        + FilenameUtils.removeExtension(xmlfilename)
+        + ".csv";
+
+      logger.debug("prepare csv file: '"+csvfilename+"'");
+
       parser.parse(this.xmlEricssonFile, handler);
       return true;
     } // try
@@ -62,10 +91,6 @@ class EricssonConverter {
       return false;
     } //
 
-  }
-
-  public File getXmlEricssonFile () {
-    return this.xmlEricssonFile;
   }
 
   private Boolean createParser() {
@@ -83,5 +108,6 @@ class EricssonConverter {
   private File xmlEricssonFile;
   private SAXParserFactory factory;
   private SAXParser parser;
+  private String csvPath;
 
 } // class EricssonConverter

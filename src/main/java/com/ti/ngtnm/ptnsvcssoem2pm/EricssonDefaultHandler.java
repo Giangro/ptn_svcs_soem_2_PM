@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.StringTokenizer;
+import java.io.File;
 
 class EricssonDefaultHandler extends DefaultHandler {
 
@@ -345,6 +346,14 @@ class EricssonDefaultHandler extends DefaultHandler {
     return measurepoint;
   }
 
+  public void setCsvFile (File csvfile) {
+    this.csvFile = csvfile;
+  }
+
+  public File getCsvFile () {
+    return this.csvFile;
+  }
+
   private Boolean bNE = false;
   private Boolean bNEName = false;
   private Boolean bNESuffix = false;
@@ -371,5 +380,7 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   // counter name
   private String counterName = null;
+
+  private File csvFile = null;
 
 } // class EricssonDefaultHandler

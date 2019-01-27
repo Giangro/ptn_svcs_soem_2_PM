@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.io.File;
-
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 class ConvertFiles {
@@ -36,7 +36,9 @@ class ConvertFiles {
           File toconvert = new File (abspathfilename + ConvertFiles.PROCESSING_EXT);
           logger.debug("renaming file to '"+abspathfilename + ConvertFiles.PROCESSING_EXT + "'");
           if (files[i].renameTo(toconvert) == true) {
-            ericssonConverter.setXmlEricssonFile(toconvert);            
+            ericssonConverter.setXmlEricssonFile(toconvert);
+            ericssonConverter.setCsvPath(this.csvPath);
+            logger.debug("path to write csv files is '"+this.csvPath+"'");
             if (ericssonConverter.convertFile() == true) {
               logger.info ("file '" + files[i].getName() + "' successfully converted");
               File converted = new File (abspathfilename + ConvertFiles.OK_EXT);
@@ -61,5 +63,8 @@ class ConvertFiles {
   }
 
   private EricssonConverter ericssonConverter;
+
+  @Value("${target_path}")
+  private String csvPath;
 
 } // class ConvertFiles
