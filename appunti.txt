@@ -12,11 +12,10 @@ git checkout -b feature/listfiles develop
 git checkout develop
 git merge feature/listfiles
 git push origin develop
-git branch -D feature/listfiles
 git checkout master
 git merge develop
-git tag -a v0.1.2 -m "list files"
-git tag
+git tag -a v0.3.0 -m "first working release"
+git branch -D feature/listfiles
 
 
 =================================================
