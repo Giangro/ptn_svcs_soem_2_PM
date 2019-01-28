@@ -308,21 +308,49 @@ class EricssonDefaultHandler extends DefaultHandler {
         this.ne.getNEName()+"."+this.ne.getNESuffix()
         );
       logger.debug("NEAlias: " + this.ne.getNEAlias());
+      this.bNE = false;
     } // if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NENAME)) {
+        this.bNEName = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NESUFFIX)) {
+      this.bNESuffix = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NETYPE)) {
+      this.bNEType = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY)) {
+      this.bEntity = false;
+    } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
       this.sourceMap.put(this.source.getId(), this.source);
       logger.debug("source = '"+this.sourceMap.get(this.source.getId()).toString()+"'");
+      this.bSource = false;
       this.source = null;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COUNTER)) {
       logger.debug(this.counterName+":" + this.entity.getCounter(this.counterName));
       this.counterName = null;
+      this.bCounter = false;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
       this.writeCSVRow();
+      this.bDetails = false;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITYIDENTITY)) {
       this.bEntityIdentity = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SCHEMEMOAM)) {
+      this.bSchemeMOAM = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_TIMESTAMP)) {
+      this.bTimeStamp = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COMPLIANCE)) {
+      this.bCompliance = false;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COUNTER)) {
+      this.bCounter = false;
     } // else if
   }
 
@@ -456,14 +484,15 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
       this.csvFileWriter.append(this.entity.getTimeStamp()); // EndTime
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
-      this.csvFileWriter.append(this.entity.getFailure()); // Failure
+      String failure = this.entity.getFailure();
+      if (!failure.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY_COMPLIANCE_SUCCESS))
+        this.csvFileWriter.append(failure); // Failure
       for (int ct=0; ct<counterList.length; ct++) {
         this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
         String counterval = this.entity.getCounter(counterList[ct]);
         if (counterval!=null) {
           this.csvFileWriter.append(counterval);
         } // if
-        this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
       } // for
       this.csvFileWriter.append(EricssonDefaultHandler.NEW_LINE_SEPARATOR);
     } // try
