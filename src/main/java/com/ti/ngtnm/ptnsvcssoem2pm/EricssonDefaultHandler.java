@@ -17,7 +17,8 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.StringTokenizer;
-import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 class EricssonDefaultHandler extends DefaultHandler {
 
@@ -26,6 +27,9 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   static final String EMPTY_STRING = "";
   static final String SOURCE_ID_TOKEN_SEP = "-";
+  static final String COMMA_DELIMITER = ";";
+  static final String NEW_LINE_SEPARATOR = "\n";
+
 
   // tag                                                                            CSV column
   //                                                                                ===========
@@ -97,6 +101,14 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   final static String XML_ENTITY_COMPLIANCE_SUCCESS         = "Success";
 
+  final static String CSV_NEID_COLUMN                       = "NeId";
+  final static String CSV_NEALIAS_COLUMN                    = "NeAlias";
+  final static String CSV_NETYPE_COLUMN                     = "NeType";
+  final static String CSV_ENTITYTYPE_COLUMN                 = "EntityType";
+  final static String CSV_MEASUREPOINT_COLUMN               = "MeasurePoint";
+  final static String CSV_ENDTIME_COLUMN                    = "EndTime";
+  final static String CSV_FAILURE_COLUMN                    = "Failure";
+
   final String counterList[] = {
     EricssonDefaultHandler.XML_COUNTER_NUMOFSAMP_ATTR_VAL,
     EricssonDefaultHandler.XML_COUNTER_DROPEVENTS_ATTR_VAL,
@@ -137,6 +149,61 @@ class EricssonDefaultHandler extends DefaultHandler {
     EricssonDefaultHandler.XML_COUNTER_MAXRTDELAY_ATTR_VAL
   };
 
+  final String csvColumn[] = {
+    EricssonDefaultHandler.CSV_NEID_COLUMN,
+    EricssonDefaultHandler.CSV_NEALIAS_COLUMN,
+    EricssonDefaultHandler.CSV_NETYPE_COLUMN,
+    EricssonDefaultHandler.CSV_ENTITYTYPE_COLUMN,
+    EricssonDefaultHandler.CSV_MEASUREPOINT_COLUMN,
+    EricssonDefaultHandler.CSV_ENDTIME_COLUMN,
+    EricssonDefaultHandler.CSV_FAILURE_COLUMN,
+    EricssonDefaultHandler.XML_COUNTER_NUMOFSAMP_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_DROPEVENTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTLOCTETS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTPACKETS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_BROADCPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MULTICPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_CRCALGNERR_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UNDSIZPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OVRSIZPACK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_FRAGMENTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_JABBERS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_COLLISIONS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UTILIZATIO_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_USF_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OSF_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_FRAG_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_FFAE_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UFTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MFTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_BFTOK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_OROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_UFROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MFROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_BFROK_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTTXPKTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTRXPKTS_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTTXPKTLO_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_TOTRXPKTLO_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVGTXPKTLR_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVGRXPKTLR_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MIN2WDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVG2WDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MAX2WDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MINRTDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_AVGRTDELAY_ATTR_VAL,
+    EricssonDefaultHandler.XML_COUNTER_MAXRTDELAY_ATTR_VAL
+  };
+
+  public void setCsvFileWriter (FileWriter csvfilewriter) {
+    this.csvFileWriter = csvfilewriter;
+  }
+
+  public FileWriter getCsvFileWriter () {
+    return this.csvFileWriter;
+  }
+
   @Override
   public void startElement(String uri, String localName, String qName, Attributes attributes)
   throws SAXException {
@@ -145,6 +212,7 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.ne = new NE();
       this.ne.setNEIdOnEM(neidonemstr);
       logger.debug("NEIdOnEM(NeId): " + this.ne.getNEIdOnEM());
+      this.writeCSVHeader();
       this.bNE = true;
     } // if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_NENAME)) {
@@ -160,6 +228,7 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.bNEType = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITY)) {
+      logger.debug("*** new entity ***");
       String id = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_ID_ATTR);
       String sourceid = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_SOURCEID_ATTR);
       this.entity = new Entity();
@@ -171,6 +240,9 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.entity.setMeasurePoint(measurepoint);
       logger.debug("entity.measurepoint: " + this.entity.getMeasurePoint());
       this.bEntity = true;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITYIDENTITY)) {
+      this.bEntityIdentity = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
       HashMap <String,String> countermap
@@ -236,7 +308,6 @@ class EricssonDefaultHandler extends DefaultHandler {
         this.ne.getNEName()+"."+this.ne.getNESuffix()
         );
       logger.debug("NEAlias: " + this.ne.getNEAlias());
-      this.ne = null;
     } // if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_SOURCE)) {
       this.sourceMap.put(this.source.getId(), this.source);
@@ -246,6 +317,12 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_COUNTER)) {
       logger.debug(this.counterName+":" + this.entity.getCounter(this.counterName));
       this.counterName = null;
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
+      this.writeCSVRow();
+    } // else if
+    else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITYIDENTITY)) {
+      this.bEntityIdentity = false;
     } // else if
   }
 
@@ -271,6 +348,12 @@ class EricssonDefaultHandler extends DefaultHandler {
     } // else if
     else if (this.bEntity == true) {
       this.bEntity = false;
+    } // else if
+    else if (this.bEntityIdentity == true) {
+      String entityidentity = new String(ch, start, length);
+      this.entity.setEntityIdentity(entityidentity);
+      logger.debug("EntityIdentity(EntityType): " + this.entity.getEntityIdentity());
+      this.bEntityIdentity = false;
     } // else if
     else if (this.bDetails == true) {
       this.bDetails = false;
@@ -312,13 +395,13 @@ class EricssonDefaultHandler extends DefaultHandler {
       else {
         measurepoint
           = extractMeasurePointFromSourceId(sourceid,7,10);
-          measurepoint = measurepoint
-            + " "
-            + source.getTunnel()
-            + "." + source.getLspInstance()
-            + "." + source.getCosBundleTx()
-            + "." + source.getIsLsp()
-            ;
+        measurepoint = measurepoint
+                       + " "
+                       + source.getTunnel()
+                       + "." + source.getLspInstance()
+                       + "." + source.getCosBundleTx()
+                       + "." + source.getIsLsp()
+        ;
       } // else
     } // else
     return measurepoint;
@@ -346,12 +429,47 @@ class EricssonDefaultHandler extends DefaultHandler {
     return measurepoint;
   }
 
-  public void setCsvFile (File csvfile) {
-    this.csvFile = csvfile;
+  private void writeCSVHeader() {
+    try {
+      this.csvFileWriter.append(csvColumn[0]);
+      for (int ct=1; ct<this.csvColumn.length; ct++) {
+        this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER+csvColumn[ct]);
+      } // for
+      this.csvFileWriter.append(EricssonDefaultHandler.NEW_LINE_SEPARATOR);
+    } // try
+    catch (IOException ex) {
+      logger.error("error while writing csv header: "+ex.getLocalizedMessage());
+    } // catch
   }
 
-  public File getCsvFile () {
-    return this.csvFile;
+  private void writeCSVRow() {
+    try {
+      this.csvFileWriter.append(this.ne.getNEIdOnEM()); //NeId
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.ne.getNEAlias()); // NeAlias
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.ne.getNEType()); // NeType
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.entity.getEntityIdentity()); // EntityType
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.entity.getMeasurePoint()); // MeasurePoint
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.entity.getTimeStamp()); // EndTime
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.entity.getFailure()); // Failure
+      for (int ct=0; ct<counterList.length; ct++) {
+        this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+        String counterval = this.entity.getCounter(counterList[ct]);
+        if (counterval!=null) {
+          this.csvFileWriter.append(counterval);
+        } // if
+        this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      } // for
+      this.csvFileWriter.append(EricssonDefaultHandler.NEW_LINE_SEPARATOR);
+    } // try
+    catch (Exception ex) {
+      logger.error("error while writing csv row to file: "+ex.getLocalizedMessage());
+    } // catch
   }
 
   private Boolean bNE = false;
@@ -359,6 +477,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   private Boolean bNESuffix = false;
   private Boolean bNEType = false;
   private Boolean bEntity = false;
+  private Boolean bEntityIdentity = false;
   private Boolean bDetails = false;
   private Boolean bSource = false;
   private Boolean bSchemeMOAM = false;
@@ -381,6 +500,6 @@ class EricssonDefaultHandler extends DefaultHandler {
   // counter name
   private String counterName = null;
 
-  private File csvFile = null;
+  private FileWriter csvFileWriter = null;
 
 } // class EricssonDefaultHandler

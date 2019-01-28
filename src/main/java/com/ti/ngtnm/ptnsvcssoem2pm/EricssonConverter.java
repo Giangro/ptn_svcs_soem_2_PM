@@ -15,7 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FilenameUtils;
-
+import java.io.FileWriter;
 
 class EricssonConverter {
 
@@ -69,17 +69,18 @@ class EricssonConverter {
 
       String xmlfilename =
         FilenameUtils.removeExtension(this.xmlEricssonFile.getName());
-
       logger.debug("xml filename: '"+xmlfilename+"'");
-
       String csvfilename
         = this.csvPath
+        + File.separatorChar
         + FilenameUtils.removeExtension(xmlfilename)
         + ".csv";
-
       logger.debug("prepare csv file: '"+csvfilename+"'");
-
+      FileWriter csvfilewriter = new FileWriter(csvfilename);
+      handler.setCsvFileWriter(csvfilewriter);
       parser.parse(this.xmlEricssonFile, handler);
+      csvfilewriter.flush();
+      csvfilewriter.close();
       return true;
     } // try
     catch (SAXException ex) {

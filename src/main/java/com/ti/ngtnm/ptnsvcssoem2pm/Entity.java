@@ -82,11 +82,22 @@ class Entity {
     this.id = id;
   }
 
+  // entityIdentity Getter
+  public String getEntityIdentity() {
+    return this.entityIdentity;
+  }
+
+  // EntityIdentity Setter
+  public void setEntityIdentity(String entityidentity) {
+    this.entityIdentity = entityidentity;
+  }
+
   private String measurePoint = null;
   private String failure = null;
   private String timeStamp = null;
   private String sourceId = null;
   private String id = null;
+  private String entityIdentity = null;
   private HashMap <String,String> counterMap = null;
 
 } // class Entity
