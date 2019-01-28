@@ -11,6 +11,7 @@ git checkout -b feature/listfiles develop
 -- merge to develop
 git checkout develop
 git merge feature/listfiles
+git push origin develop
 git branch -D feature/listfiles
 
 
