@@ -254,9 +254,7 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITYIDENTITY)) {
         String entitytypeid = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_ENTITYTYPEID_ATTR);
         this.entity.setEntityTypeId(entitytypeid);
-        logger.debug("entity.entityTypeId: " + this.entity.getEntityTypeId());
-        
-        
+        logger.debug("entity.entityTypeId: " + this.entity.getEntityTypeId());                
         this.bEntityIdentity = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
@@ -493,7 +491,8 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
       this.csvFileWriter.append(this.ne.getNEType()); // NeType
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
-      this.csvFileWriter.append(this.entity.getEntityIdentity()); // EntityType
+      //this.csvFileWriter.append(this.entity.getEntityIdentity()); // EntityType
+      this.csvFileWriter.append(this.getEntityTypeName(this.entity.getEntityTypeId())); // entity type name
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
       this.csvFileWriter.append(this.entity.getMeasurePoint()); // MeasurePoint
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
