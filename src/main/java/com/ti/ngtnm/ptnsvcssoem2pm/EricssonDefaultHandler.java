@@ -528,7 +528,9 @@ class EricssonDefaultHandler extends DefaultHandler {
     else if (entitytypeid.equals(EricssonDefaultHandler.MAP_ENTITYTYPEID_MOAMLOSS)) {
         return EricssonDefaultHandler.MAP_ENTITYTYPENAME_MOAMLOSS;
     } // else if 
-    return EricssonDefaultHandler.EMPTY_STRING;
+    else { 
+        return EricssonDefaultHandler.EMPTY_STRING;
+    } // else
   }
   
   private Boolean bNE = false;
