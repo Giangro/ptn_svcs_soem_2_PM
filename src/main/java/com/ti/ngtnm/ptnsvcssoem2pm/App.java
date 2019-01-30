@@ -15,7 +15,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.io.File;
 
-
 /**
  *
  * @author Alex
