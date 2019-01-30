@@ -7,8 +7,6 @@ package com.ti.ngtnm.ptnsvcssoem2pm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -27,9 +25,8 @@ class EricssonDefaultHandler extends DefaultHandler {
 
   static final String EMPTY_STRING = "";
   static final String SOURCE_ID_TOKEN_SEP = "-";
-  static final String COMMA_DELIMITER = ";";
+  static final String COMMA_DELIMITER = ",";
   static final String NEW_LINE_SEPARATOR = "\n";
-
 
   // tag                                                                            CSV column
   //                                                                                ===========
@@ -55,6 +52,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String XML_SOURCE_ISLSP_ATTR                 = "isLsp";
   final static String XML_ENTITY_ID_ATTR                    = "Id";
   final static String XML_ENTITY_SOURCEID_ATTR              = "sourceId";
+  final static String XML_ENTITY_ENTITYTYPEID_ATTR          = "entityTypeId";
   final static String XML_NE_NEIDONEM_ATTR                  = "NEIdOnEM";           // NeId
   final static String XML_NENAME_LONGNAME_ATTR              = "longName";           // NeAlias*
   final static String XML_TIMESTAMP_LOCALTIMEFORMATID_ATTR  = "localTimeFormatId";  // EndTime
@@ -109,6 +107,16 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String CSV_ENDTIME_COLUMN                    = "EndTime";
   final static String CSV_FAILURE_COLUMN                    = "Failure";
 
+  final static String MAP_ENTITYTYPEID_RMON                 = "21";
+  final static String MAP_ENTITYTYPENAME_RMON               = "RMON";
+  final static String MAP_ENTITYTYPEID_MEFUNITRAF           = "31";
+  final static String MAP_ENTITYTYPENAME_MEFUNITRAF         = "MEFUNITraf";
+  final static String MAP_ENTITYTYPEID_MOAMLOSS             = "73";
+  final static String MAP_ENTITYTYPENAME_MOAMLOSS           = "MOAM LOSS";
+  final static String MAP_ENTITYTYPEID_MOAMDELAY            = "74";
+  final static String MAP_ENTITYTYPENAME_MOAMDELAY          = "MOAM DELAY";
+
+  
   final String counterList[] = {
     EricssonDefaultHandler.XML_COUNTER_NUMOFSAMP_ATTR_VAL,
     EricssonDefaultHandler.XML_COUNTER_DROPEVENTS_ATTR_VAL,
@@ -195,6 +203,8 @@ class EricssonDefaultHandler extends DefaultHandler {
     EricssonDefaultHandler.XML_COUNTER_AVGRTDELAY_ATTR_VAL,
     EricssonDefaultHandler.XML_COUNTER_MAXRTDELAY_ATTR_VAL
   };
+  
+  
 
   public void setCsvFileWriter (FileWriter csvfilewriter) {
     this.csvFileWriter = csvfilewriter;
@@ -242,7 +252,12 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.bEntity = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_ENTITYIDENTITY)) {
-      this.bEntityIdentity = true;
+        String entitytypeid = attributes.getValue(EricssonDefaultHandler.XML_ENTITY_ENTITYTYPEID_ATTR);
+        this.entity.setEntityTypeId(entitytypeid);
+        logger.debug("entity.entityTypeId: " + this.entity.getEntityTypeId());
+        
+        
+        this.bEntityIdentity = true;
     } // else if
     else if (qName.equalsIgnoreCase(EricssonDefaultHandler.XML_DETAILS)) {
       HashMap <String,String> countermap
@@ -501,6 +516,22 @@ class EricssonDefaultHandler extends DefaultHandler {
     } // catch
   }
 
+  private String getEntityTypeName(String entitytypeid) {
+    if (entitytypeid.equals(EricssonDefaultHandler.MAP_ENTITYTYPEID_RMON)) {
+        return EricssonDefaultHandler.MAP_ENTITYTYPENAME_RMON;
+    } // if    
+    else if (entitytypeid.equals(EricssonDefaultHandler.MAP_ENTITYTYPEID_MEFUNITRAF)) {
+        return EricssonDefaultHandler.MAP_ENTITYTYPENAME_MEFUNITRAF;
+    } // else if
+    else if (entitytypeid.equals(EricssonDefaultHandler.MAP_ENTITYTYPEID_MOAMDELAY)) {
+        return EricssonDefaultHandler.MAP_ENTITYTYPENAME_MOAMDELAY;
+    } // else if
+    else if (entitytypeid.equals(EricssonDefaultHandler.MAP_ENTITYTYPEID_MOAMLOSS)) {
+        return EricssonDefaultHandler.MAP_ENTITYTYPENAME_MOAMLOSS;
+    } // else if 
+    return EricssonDefaultHandler.EMPTY_STRING;
+  }
+  
   private Boolean bNE = false;
   private Boolean bNEName = false;
   private Boolean bNESuffix = false;
