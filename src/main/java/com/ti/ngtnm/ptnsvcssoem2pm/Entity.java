@@ -92,12 +92,24 @@ class Entity {
     this.entityIdentity = entityidentity;
   }
 
+    // EntityTypeId Getter
+  public String getEntityTypeId() {
+    return this.entityTypeId;
+  }
+
+  // EntityTypeId  Setter
+  public void setEntityTypeId(String entitytypeid) {
+    this.entityTypeId= entitytypeid;
+  }
+
+  
   private String measurePoint = null;
   private String failure = null;
   private String timeStamp = null;
   private String sourceId = null;
   private String id = null;
   private String entityIdentity = null;
+  private String entityTypeId = null;
   private HashMap <String,String> counterMap = null;
 
 } // class Entity
