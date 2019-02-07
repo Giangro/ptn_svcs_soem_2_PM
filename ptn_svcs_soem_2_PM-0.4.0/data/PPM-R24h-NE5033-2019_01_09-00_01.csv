@@ -1,0 +1,3 @@
+NeId,NeAlias,NeType,EntityType,MeasurePoint,EndTime,Failure,NumOfSamp,DropEvents,TotlOctets,TotPackets,BroadcPack,MulticPack,CrcAlgnErr,UndSizPack,OvrSizPack,Fragments,Jabbers,Collisions,Utilizatio,USF,OSF,Frag,FFAE,OTOk,UFTOk,MFTOk,BFTOk,OROk,UFROk,MFROk,BFROk,totTxPkts,totRxPkts,totTxPktLo,totRxPktLo,avgTxPktLR,avgRxPktLR,min2WDelay,avg2WDelay,max2WDelay,minRTDelay,avgRTDelay,maxRTDelay
+5033,FOLIGNO-PTN2.8,SPO1410,MOAM DELAY,0/11/0 11.16.255.1,09/01/2019 00:00,,86399,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,12,14.3959883794951,18,54,56.9543281750946,60
+5033,FOLIGNO-PTN2.8,SPO1410,MOAM LOSS,0/11/0 11.16.255.1,09/01/2019 00:00,,86399,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PerformanceInfo>
+    <Doc>
+        <DocTitle>ServiceOn EM CONFIGURATION: Performance</DocTitle>
+        <DocDtd author="Ericsson" version="3.1"/>
+        <DocGenerator application="ServiceOnEM-PPMxml" date="2019-01-09 03.00.00"/>
+    </Doc>
+    <EM EMId="0" Id="EM-0">
+        <EMName CORE="5" version="21.1.1">ptn02</EMName>
+    </EM>
+    <NE Id="NE-0-5010" NEIdOnEM="5010" emId="EM-0">
+        <NEIdentity>
+            <NEName longName="TORINOITER-PTN3">
+                <NEShortName>OITER3-1.1</NEShortName>
+                <NESuffix>1</NESuffix>
+            </NEName>
+            <EMPlugin NEBasicTypeId="43" version="19.8.1.HB">VXX</EMPlugin>
+            <NEType NEModel="" NETypeId="322">SPO1460</NEType>
+            <NEProtocol>
+                <ipAdd>
+                    <Address>12.2.125.164</Address>
+                </ipAdd>
+            </NEProtocol>
+        </NEIdentity>
+        <NECustomerInfo>
+            <Location>
+                <Addr>12.2.125.164:::</Addr>
+                <Room></Room>
+                <Row></Row>
+                <Rack></Rack>
+                <SubRack></SubRack>
+            </Location>
+        </NECustomerInfo>
+    </NE>
+    <Time enddate="2019-01-09 03.45.00" startdate="2019-01-09 03.00.00"/>
+    <Shelf Id="SH-0-5010-0" ShelfIdOnEM="0" ShelfIdOnNM="1" emId="EM-0" neId="NE-0-5010">
+        <ShelfIdentity shelfTypeId="-1">String not found</ShelfIdentity>
+    </Shelf>
+    <Equip Id="EQ-0-5010-0-0-0" emId="EM-0" neId="NE-0-5010" shelfId="SH-0-5010-0">
+        <EquipIdentity cardId="0" cardTypeId="-1" physicalSlotId="0">String not found</EquipIdentity>
+    </Equip>
+    <Source Id="SO-0-5010-0-0-0-16-0-13-0-0-0" emId="EM-0" equipId="EQ-0-5010-0-0-0" neId="NE-0-5010" shelfId="SH-0-5010-0">
+        <SourceInfo schemeName="MOAM">
+            <SchemeMOAM tunnel="13" lspInstance="18" lspRole="0" isLsp="0" cosBundle="0" cosBundleTx="255" cosBundleRx="255" isBidirectional="0"/>
+        </SourceInfo>
+    </Source>
+    <Entity Id="EN-0-5010-0-0-0-16-0-13-0-0-0-74-0" emId="EM-0" equipId="EQ-0-5010-0-0-0" neId="NE-0-5010" shelfId="SH-0-5010-0" sourceId="SO-0-5010-0-0-0-16-0-13-0-0-0">
+        <EntityIdentity entityTypeId="74"></EntityIdentity>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4405" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4405" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4405" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4405" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.45.00"/>
+        </Details>
+    </Entity>
+    <Entity Id="EN-0-5010-0-0-0-16-0-13-0-0-0-73-0" emId="EM-0" equipId="EQ-0-5010-0-0-0" neId="NE-0-5010" shelfId="SH-0-5010-0" sourceId="SO-0-5010-0-0-0-16-0-13-0-0-0">
+        <EntityIdentity entityTypeId="73"></EntityIdentity>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4404" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4404" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4404" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="1004" complianceType="ne">PM Collection failure as object not enabled on NE</Compliance>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="4404" jobNoteString="TMF814"/>
+            <TimeStamp localTimeFormatId="2019-01-09 03.45.00"/>
+        </Details>
+    </Entity>
+</PerformanceInfo>

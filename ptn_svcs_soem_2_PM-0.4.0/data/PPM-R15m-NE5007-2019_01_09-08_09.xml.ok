@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PerformanceInfo>
+    <Doc>
+        <DocTitle>ServiceOn EM CONFIGURATION: Performance</DocTitle>
+        <DocDtd author="Ericsson" version="3.1"/>
+        <DocGenerator application="ServiceOnEM-PPMxml" date="2019-01-09 08.00.00"/>
+    </Doc>
+    <EM EMId="0" Id="EM-0">
+        <EMName CORE="5" version="21.1.1">ptn02</EMName>
+    </EM>
+    <NE Id="NE-0-5007" NEIdOnEM="5007" emId="EM-0">
+        <NEIdentity>
+            <NEName longName="ROMAITER-PTN3">
+                <NEShortName>AITER3-2.2</NEShortName>
+                <NESuffix>2</NESuffix>
+            </NEName>
+            <EMPlugin NEBasicTypeId="43" version="19.8.1.HB">VXX</EMPlugin>
+            <NEType NEModel="" NETypeId="322">SPO1460</NEType>
+            <NEProtocol>
+                <ipAdd>
+                    <Address>12.2.125.81</Address>
+                </ipAdd>
+            </NEProtocol>
+        </NEIdentity>
+        <NECustomerInfo>
+            <Location>
+                <Addr>12.2.125.81:::</Addr>
+                <Room></Room>
+                <Row></Row>
+                <Rack></Rack>
+                <SubRack></SubRack>
+            </Location>
+        </NECustomerInfo>
+    </NE>
+    <Time enddate="2019-01-09 08.45.00" startdate="2019-01-09 08.00.00"/>
+    <Shelf Id="SH-0-5007-0" ShelfIdOnEM="0" ShelfIdOnNM="1" emId="EM-0" neId="NE-0-5007">
+        <ShelfIdentity shelfTypeId="0">Main Shelf (Unit 1)</ShelfIdentity>
+    </Shelf>
+    <Equip Id="EQ-0-5007-0-0-12" emId="EM-0" neId="NE-0-5007" shelfId="SH-0-5007-0">
+        <EquipIdentity cardId="12" cardTypeId="35" physicalSlotId="0">10xGE(SM) A (Slot 12)</EquipIdentity>
+    </Equip>
+    <Equip Id="EQ-0-5007-0-0-3" emId="EM-0" neId="NE-0-5007" shelfId="SH-0-5007-0">
+        <EquipIdentity cardId="3" cardTypeId="38" physicalSlotId="0">2x10GE(SM) A (Slot 3)</EquipIdentity>
+    </Equip>
+    <Equip Id="EQ-0-5007-0-0-17" emId="EM-0" neId="NE-0-5007" shelfId="SH-0-5007-0">
+        <EquipIdentity cardId="17" cardTypeId="38" physicalSlotId="0">2x10GE(SM) A (Slot 17)</EquipIdentity>
+    </Equip>
+    <Source Id="SO-0-5007-0-0-12-9-7-0-0-0-0" emId="EM-0" equipId="EQ-0-5007-0-0-12" neId="NE-0-5007" shelfId="SH-0-5007-0">
+        <SourceInfo schemeName="ETH">
+            <SchemeETH sourceNumber="0" port="7"/>
+        </SourceInfo>
+    </Source>
+    <Source Id="SO-0-5007-0-0-3-9-2-0-0-0-0" emId="EM-0" equipId="EQ-0-5007-0-0-3" neId="NE-0-5007" shelfId="SH-0-5007-0">
+        <SourceInfo schemeName="ETH">
+            <SchemeETH sourceNumber="0" port="2"/>
+        </SourceInfo>
+    </Source>
+    <Source Id="SO-0-5007-0-0-17-9-2-0-0-0-0" emId="EM-0" equipId="EQ-0-5007-0-0-17" neId="NE-0-5007" shelfId="SH-0-5007-0">
+        <SourceInfo schemeName="ETH">
+            <SchemeETH sourceNumber="0" port="2"/>
+        </SourceInfo>
+    </Source>
+    <Entity Id="EN-0-5007-0-0-12-9-7-0-0-0-0-31-0" emId="EM-0" equipId="EQ-0-5007-0-0-12" neId="NE-0-5007" shelfId="SH-0-5007-0" sourceId="SO-0-5007-0-0-12-9-7-0-0-0-0">
+        <EntityIdentity entityTypeId="31">MEFUNITraf</EntityIdentity>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">0</Counter>
+            <Counter name="UFTOk">0</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">0</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">0</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1166" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">0</Counter>
+            <Counter name="UFTOk">0</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">0</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">0</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1166" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">0</Counter>
+            <Counter name="UFTOk">0</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">0</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">0</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1166" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">0</Counter>
+            <Counter name="UFTOk">0</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">0</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">0</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1166" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.45.00"/>
+        </Details>
+    </Entity>
+    <Entity Id="EN-0-5007-0-0-3-9-2-0-0-0-0-31-0" emId="EM-0" equipId="EQ-0-5007-0-0-3" neId="NE-0-5007" shelfId="SH-0-5007-0" sourceId="SO-0-5007-0-0-3-9-2-0-0-0-0">
+        <EntityIdentity entityTypeId="31">MEFUNITraf</EntityIdentity>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">362568088</Counter>
+            <Counter name="UFTOk">3510561</Counter>
+            <Counter name="MFTOk">2434691</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">397663559</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">5945068</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1073" jobNoteString="MEF-ROMAITER-PTN3.2-slot3-port2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">362559144</Counter>
+            <Counter name="UFTOk">3510483</Counter>
+            <Counter name="MFTOk">2434624</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">397652878</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">5944922</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1073" jobNoteString="MEF-ROMAITER-PTN3.2-slot3-port2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">362569831</Counter>
+            <Counter name="UFTOk">3510587</Counter>
+            <Counter name="MFTOk">2434700</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">397664390</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">5945086</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1073" jobNoteString="MEF-ROMAITER-PTN3.2-slot3-port2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">362557216</Counter>
+            <Counter name="UFTOk">3510458</Counter>
+            <Counter name="MFTOk">2434616</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">397651279</Counter>
+            <Counter name="UFROk">0</Counter>
+            <Counter name="MFROk">5944892</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1073" jobNoteString="MEF-ROMAITER-PTN3.2-slot3-port2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.45.00"/>
+        </Details>
+    </Entity>
+    <Entity Id="EN-0-5007-0-0-17-9-2-0-0-0-0-31-0" emId="EM-0" equipId="EQ-0-5007-0-0-17" neId="NE-0-5007" shelfId="SH-0-5007-0" sourceId="SO-0-5007-0-0-17-9-2-0-0-0-0">
+        <EntityIdentity entityTypeId="31">MEFUNITraf</EntityIdentity>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">371545792</Counter>
+            <Counter name="UFTOk">6480507</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">414881360</Counter>
+            <Counter name="UFROk">6480678</Counter>
+            <Counter name="MFROk">900</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1167" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">371566680</Counter>
+            <Counter name="UFTOk">6480854</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">414904464</Counter>
+            <Counter name="UFROk">6481019</Counter>
+            <Counter name="MFROk">900</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1167" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">371534712</Counter>
+            <Counter name="UFTOk">6480297</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">414869456</Counter>
+            <Counter name="UFROk">6480486</Counter>
+            <Counter name="MFROk">900</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1167" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="USF">0</Counter>
+            <Counter name="OSF">0</Counter>
+            <Counter name="Frag">0</Counter>
+            <Counter name="FFAE">0</Counter>
+            <Counter name="OTOk">371509940</Counter>
+            <Counter name="UFTOk">6479864</Counter>
+            <Counter name="MFTOk">0</Counter>
+            <Counter name="BFTOk">0</Counter>
+            <Counter name="OROk">414841040</Counter>
+            <Counter name="UFROk">6480035</Counter>
+            <Counter name="MFROk">900</Counter>
+            <Counter name="BFROk">0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1167" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.45.00"/>
+        </Details>
+    </Entity>
+    <Entity Id="EN-0-5007-0-0-12-9-7-0-0-0-0-21-0" emId="EM-0" equipId="EQ-0-5007-0-0-12" neId="NE-0-5007" shelfId="SH-0-5007-0" sourceId="SO-0-5007-0-0-12-9-7-0-0-0-0">
+        <EntityIdentity entityTypeId="21">RMON</EntityIdentity>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">0</Counter>
+            <Counter name="TotPackets">0</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">0</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1168" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">0</Counter>
+            <Counter name="TotPackets">0</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">0</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1168" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">0</Counter>
+            <Counter name="TotPackets">0</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">0</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1168" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">0</Counter>
+            <Counter name="TotPackets">0</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">0</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1168" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.45.00"/>
+        </Details>
+    </Entity>
+    <Entity Id="EN-0-5007-0-0-3-9-2-0-0-0-0-21-0" emId="EM-0" equipId="EQ-0-5007-0-0-3" neId="NE-0-5007" shelfId="SH-0-5007-0" sourceId="SO-0-5007-0-0-3-9-2-0-0-0-0">
+        <EntityIdentity entityTypeId="21">RMON</EntityIdentity>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">397663494</Counter>
+            <Counter name="TotPackets">5945075</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">5945075</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1075" jobNoteString="RMON-ROMAITER-PTN3.2-slot-porta2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">397652367</Counter>
+            <Counter name="TotPackets">5944909</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">5944909</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1075" jobNoteString="RMON-ROMAITER-PTN3.2-slot-porta2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">397665093</Counter>
+            <Counter name="TotPackets">5945097</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">5945097</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1075" jobNoteString="RMON-ROMAITER-PTN3.2-slot-porta2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">397651343</Counter>
+            <Counter name="TotPackets">5944890</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">5944890</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1075" jobNoteString="RMON-ROMAITER-PTN3.2-slot-porta2"/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.45.00"/>
+        </Details>
+    </Entity>
+    <Entity Id="EN-0-5007-0-0-17-9-2-0-0-0-0-21-0" emId="EM-0" equipId="EQ-0-5007-0-0-17" neId="NE-0-5007" shelfId="SH-0-5007-0" sourceId="SO-0-5007-0-0-17-9-2-0-0-0-0">
+        <EntityIdentity entityTypeId="21">RMON</EntityIdentity>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">414880272</Counter>
+            <Counter name="TotPackets">6481539</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">900</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1169" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.00.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">414907600</Counter>
+            <Counter name="TotPackets">6481981</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">900</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1169" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.15.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">414868432</Counter>
+            <Counter name="TotPackets">6481366</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">900</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1169" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.30.00"/>
+        </Details>
+        <Details>
+            <Compliance complianceId="0" complianceType="em">Success</Compliance>
+            <Counter name="DropEvents">0</Counter>
+            <Counter name="TotlOctets">414841040</Counter>
+            <Counter name="TotPackets">6480935</Counter>
+            <Counter name="BroadcPack">0</Counter>
+            <Counter name="MulticPack">900</Counter>
+            <Counter name="CrcAlgnErr">0</Counter>
+            <Counter name="UndSizPack">0</Counter>
+            <Counter name="OvrSizPack">0</Counter>
+            <Counter name="Fragments">0</Counter>
+            <Counter name="Jabbers">0</Counter>
+            <Counter name="Collisions">0</Counter>
+            <Counter name="Utilizatio">0.0</Counter>
+            <Threshold></Threshold>
+            <JobStrings circNameString="" jobId="1169" jobNoteString=""/>
+            <TimeStamp localTimeFormatId="2019-01-09 08.45.00"/>
+        </Details>
+    </Entity>
+</PerformanceInfo>

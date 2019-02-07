@@ -1,0 +1,7 @@
+NeId,NeAlias,NeType,EntityType,MeasurePoint,EndTime,Failure,NumOfSamp,DropEvents,TotlOctets,TotPackets,BroadcPack,MulticPack,CrcAlgnErr,UndSizPack,OvrSizPack,Fragments,Jabbers,Collisions,Utilizatio,USF,OSF,Frag,FFAE,OTOk,UFTOk,MFTOk,BFTOk,OROk,UFROk,MFROk,BFROk,totTxPkts,totRxPkts,totTxPktLo,totRxPktLo,avgTxPktLR,avgRxPktLR,min2WDelay,avg2WDelay,max2WDelay,minRTDelay,avgRTDelay,maxRTDelay
+5001,ROMAITER-PTN2.2,SPO1410,MEFUNITraf,5/9/1,09/01/2019 00:00,,,,,,,,,,,,,,,0,0,0,0,30860371704,518468157,86400,0,29875609024,466628192,86400,0,,,,,,,,,,,,
+5001,ROMAITER-PTN2.2,SPO1410,MEFUNITraf,6/9/1,09/01/2019 00:00,,,,,,,,,,,,,,,0,0,0,0,21412034548,362745851,86401,0,21566810432,336803213,86400,0,,,,,,,,,,,,
+5001,ROMAITER-PTN2.2,SPO1410,MEFUNITraf,6/9/3,09/01/2019 00:00,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,
+5001,ROMAITER-PTN2.2,SPO1410,RMON,6/9/1,09/01/2019 00:00,,,0,224811024,3511714,0,900,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+5001,ROMAITER-PTN2.2,SPO1410,RMON,5/9/1,09/01/2019 00:00,,,0,311149840,4860769,0,900,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+5001,ROMAITER-PTN2.2,SPO1410,RMON,6/9/3,09/01/2019 00:00,,,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,45 @@
+NeId,NeAlias,NeType,EntityType,MeasurePoint,EndTime,Failure,NumOfSamp,DropEvents,TotlOctets,TotPackets,BroadcPack,MulticPack,CrcAlgnErr,UndSizPack,OvrSizPack,Fragments,Jabbers,Collisions,Utilizatio,USF,OSF,Frag,FFAE,OTOk,UFTOk,MFTOk,BFTOk,OROk,UFROk,MFROk,BFROk,totTxPkts,totRxPkts,totTxPktLo,totRxPktLo,avgTxPktLR,avgRxPktLR,min2WDelay,avg2WDelay,max2WDelay,minRTDelay,avgRTDelay,maxRTDelay
+5005,ROMAITER-PTN2.6,SPO1410,MEFUNITraf,4/9/6,09/01/2019 03:00,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MEFUNITraf,4/9/6,09/01/2019 03:15,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MEFUNITraf,4/9/6,09/01/2019 03:30,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MEFUNITraf,4/9/6,09/01/2019 03:45,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/10/0 10.17.255.1,09/01/2019 03:00,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/10/0 10.17.255.1,09/01/2019 03:15,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/10/0 10.17.255.1,09/01/2019 03:30,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/10/0 10.17.255.1,09/01/2019 03:45,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,RMON,4/9/6,09/01/2019 03:00,,,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,RMON,4/9/6,09/01/2019 03:15,,,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,RMON,4/9/6,09/01/2019 03:30,,,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,RMON,4/9/6,09/01/2019 03:45,,,0,0,0,0,0,0,0,0,0,0,0,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/10/0 10.17.255.1,09/01/2019 03:00,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/10/0 10.17.255.1,09/01/2019 03:15,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/10/0 10.17.255.1,09/01/2019 03:30,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/10/0 10.17.255.1,09/01/2019 03:45,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/4/0 4.6.255.1,09/01/2019 03:00,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1255555555556,20,59,62.1211111111111,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/4/0 4.6.255.1,09/01/2019 03:15,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1555555555556,20,59,62.1,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/4/0 4.6.255.1,09/01/2019 03:30,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1577777777778,20,61,62.1311111111111,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/4/0 4.6.255.1,09/01/2019 03:45,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1311111111111,19,60,62.1011111111111,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/1/0 1.1.255.0,09/01/2019 03:00,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/1/0 1.1.255.0,09/01/2019 03:15,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/1/0 1.1.255.0,09/01/2019 03:30,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/1/0 1.1.255.0,09/01/2019 03:45,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/1/0 1.1.255.0,09/01/2019 03:00,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/1/0 1.1.255.0,09/01/2019 03:15,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/1/0 1.1.255.0,09/01/2019 03:30,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/1/0 1.1.255.0,09/01/2019 03:45,PM Collection failure as object not enabled on NE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/4/0 4.6.255.1,09/01/2019 03:00,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/4/0 4.6.255.1,09/01/2019 03:15,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/4/0 4.6.255.1,09/01/2019 03:30,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/4/0 4.6.255.1,09/01/2019 03:45,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:00,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:15,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:30,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:45,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/9/0 9.11.255.0,09/01/2019 03:00,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1577777777778,20,58,62.1377777777778,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/9/0 9.11.255.0,09/01/2019 03:15,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1722222222222,20,59,62.1211111111111,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/9/0 9.11.255.0,09/01/2019 03:30,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1922222222222,20,57,62.1277777777778,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM DELAY,0/9/0 9.11.255.0,09/01/2019 03:45,,900,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16,17.1811111111111,20,58,62.1322222222222,65
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:00,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:15,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:30,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
+5005,ROMAITER-PTN2.6,SPO1410,MOAM LOSS,0/9/0 9.11.255.0,09/01/2019 03:45,,900,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0.0,0.0,,,,,,
