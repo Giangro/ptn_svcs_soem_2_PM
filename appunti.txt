@@ -16,6 +16,7 @@ git checkout master
 git merge develop
 git tag -a v0.3.0 -m "first working release"
 git branch -D feature/listfiles
+git push origin v0.4.2
 
 
 =================================================
