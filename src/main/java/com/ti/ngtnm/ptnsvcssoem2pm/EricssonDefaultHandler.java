@@ -102,6 +102,7 @@ class EricssonDefaultHandler extends DefaultHandler {
   final static String CSV_NEID_COLUMN                       = "NeId";
   final static String CSV_NEALIAS_COLUMN                    = "NeAlias";
   final static String CSV_NETYPE_COLUMN                     = "NeType";
+  final static String CSV_ENTITYTYPEID_COLUMN               = "Entity Type Id";
   final static String CSV_ENTITYTYPE_COLUMN                 = "EntityType";
   final static String CSV_MEASUREPOINT_COLUMN               = "MeasurePoint";
   final static String CSV_ENDTIME_COLUMN                    = "EndTime";
@@ -161,6 +162,7 @@ class EricssonDefaultHandler extends DefaultHandler {
     EricssonDefaultHandler.CSV_NEID_COLUMN,
     EricssonDefaultHandler.CSV_NEALIAS_COLUMN,
     EricssonDefaultHandler.CSV_NETYPE_COLUMN,
+    EricssonDefaultHandler.CSV_ENTITYTYPEID_COLUMN,
     EricssonDefaultHandler.CSV_ENTITYTYPE_COLUMN,
     EricssonDefaultHandler.CSV_MEASUREPOINT_COLUMN,
     EricssonDefaultHandler.CSV_ENDTIME_COLUMN,
@@ -491,8 +493,10 @@ class EricssonDefaultHandler extends DefaultHandler {
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
       this.csvFileWriter.append(this.ne.getNEType()); // NeType
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
-      //this.csvFileWriter.append(this.entity.getEntityIdentity()); // EntityType
-      this.csvFileWriter.append(this.getEntityTypeName(this.entity.getEntityTypeId())); // entity type name
+      this.csvFileWriter.append(this.entity.getEntityTypeId()); // EntityTypeId
+      this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
+      this.csvFileWriter.append(this.entity.getEntityIdentity()); // EntityType
+      //this.csvFileWriter.append(this.getEntityTypeName(this.entity.getEntityTypeId())); // entity type name
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
       this.csvFileWriter.append(this.entity.getMeasurePoint()); // MeasurePoint
       this.csvFileWriter.append(EricssonDefaultHandler.COMMA_DELIMITER);
